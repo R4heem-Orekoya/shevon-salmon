@@ -59,6 +59,7 @@ export default {
 		fontFamily: {
 			mono_sans: ['var(--font-mona-sans)'],
 			poppins: ['var(--font-poppins)'],
+			dancing_script: ['var(--font-dacing-script)']
 		},
   	}
   },
