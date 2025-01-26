@@ -1,5 +1,3 @@
-"use client" 
-
 import Image from "next/image"
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"
 import AsusImage from "../../../public/asus-aesthetic.jpg"
@@ -75,7 +73,7 @@ const imagesData = [
 
 const About = () => {
    return (
-      <section className="py-16">
+      <section className="pt-16">
          <div className="grid grid-cols-1 gap-4 mb-10 sm:hidden">
             {imagesData.map((item) => (
                <div key={item.id} className="relative aspect-[4/3] overflow-hidden rounded-md">

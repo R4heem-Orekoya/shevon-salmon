@@ -1,10 +1,13 @@
 "use client"
 
+import localFont from 'next/font/local'
 import { navLinks } from '@/consts/nav-links'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
+
+const againt = localFont({ src: './againts.otf' })
 
 const Navbar = () => {
    const pathname = usePathname()
@@ -14,9 +17,9 @@ const Navbar = () => {
    return (
       <div className='w-[min(1200px,90%)] mx-auto bg-gradient-to-b from-white to-transparent sticky top-0 z-[9999] hidden md:flex'>
          <nav className='w-full flex items-center justify-between h-20'>
-            <Link href="/" className='text-lg font-mono_sans font-semibold'>
-               Shevon
-               <span>.</span>
+            <Link href="/" className={`text-4xl ${againt.className} font-medium`}>
+               SS7
+               {/* <span>.</span> */}
             </Link>
             
             <ul className='flex items-center gap-6'>

@@ -32,7 +32,7 @@ const Hero = () => {
          <div className="relative h-[calc(100dvh-70px)] flex flex-col items-center justify-center pb-32">
             <div className="flex flex-col items-center">
                <div className="relative size-36 rounded-full overflow-hidden text-center">
-                  <Image src={Portrait} alt="Shevon Salmon portrait picture" fill className="object-cover" />
+                  <Image src={Portrait} alt="Shevon Salmon portrait picture" fill className="object-cover" placeholder="blur" />
                </div>
                <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans pt-4 pb-1 tracking-tight flex gap-1">
                   Hi, I'm Shevon Salmon
@@ -41,7 +41,7 @@ const Hero = () => {
                      sparklesCount={5} 
                      className="text-xl md:text-2xl lg:text-3xl font-mono_sans"
                      colors={{ first: "#A78BFA", second: "#A78BFA" }}
-                  />  */}
+                  />  */}  
                </h1>
                <p className="md:text-lg text-muted-foreground text-center max-w-md text-balance">
                   Discover the perfect blend of tech and lifestyle
@@ -66,13 +66,14 @@ const Hero = () => {
                         alt={item.alt}
                         fill
                         className="object-cover"
+                        placeholder="blur"
                      />
                   </div>
                ))}
             </div>
 
             <Link href={process.env.NEXT_PUBLIC_GUMROAD_URL!} className="flex items-center gap-2">
-               <RiHandbagLine className="w-4 h-4" />
+               <RiHandbagLine className="w-4 h-4 animate-wiggle" />
                Digital Products
             </Link>
          </div>
