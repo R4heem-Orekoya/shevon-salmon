@@ -5,6 +5,12 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+.sticky-scroll-div{
+  scrollbar-width: none;
+}
+.sticky-scroll-div::-webkit-scrollbar{
+  display: none;
+}
 
 @layer base {
   :root {

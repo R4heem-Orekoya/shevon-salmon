@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
+// @ts-check
+import withPlaiceholder from "@plaiceholder/next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        port: '',
+        pathname: '/photos/**',
+      }
+    ]
+  }
 };
 
-export default nextConfig;
+export default withPlaiceholder(nextConfig);

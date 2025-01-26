@@ -14,9 +14,9 @@ const Navbar = () => {
    return (
       <div className='w-[min(1200px,90%)] mx-auto bg-gradient-to-b from-white to-transparent sticky top-0 z-[9999] hidden md:flex'>
          <nav className='w-full flex items-center justify-between h-20'>
-            <Link href="/" className='font-mono_sans font-semibold'>
-               {/* Shevon
-               <span>.</span> */}
+            <Link href="/" className='text-lg font-mono_sans font-semibold'>
+               Shevon
+               <span>.</span>
             </Link>
             
             <ul className='flex items-center gap-6'>
@@ -35,7 +35,7 @@ const Navbar = () => {
                ))}
             </ul>
             
-            <Button variant="outline" asChild className='font-mono_sans'>
+            <Button asChild className='font-mono_sans'>
                <Link href="/contact">
                   Contact me
                </Link>
