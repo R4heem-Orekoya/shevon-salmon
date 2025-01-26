@@ -13,15 +13,37 @@ export default {
   ],
   theme: {
   	extend: {
-		animation:{
-			wiggle: 'wiggle 0.5s ease-in-out infinite',
-		},
-		keyframes: {
-			wiggle: {
-			  '0%, 100%': { transform: 'rotate(-5deg)' },
-			  '50%': { transform: 'rotate(5deg)' },
-			},
-		},
+  		animation: {
+  			wiggle: 'wiggle 0.5s ease-in-out infinite',
+  			marquee: 'marquee var(--duration) infinite linear',
+  			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite'
+  		},
+  		keyframes: {
+  			wiggle: {
+  				'0%, 100%': {
+  					transform: 'rotate(-5deg)'
+  				},
+  				'50%': {
+  					transform: 'rotate(5deg)'
+  				}
+  			},
+  			marquee: {
+  				from: {
+  					transform: 'translateX(0)'
+  				},
+  				to: {
+  					transform: 'translateX(calc(-100% - var(--gap)))'
+  				}
+  			},
+  			'marquee-vertical': {
+  				from: {
+  					transform: 'translateY(0)'
+  				},
+  				to: {
+  					transform: 'translateY(calc(-100% - var(--gap)))'
+  				}
+  			}
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -69,11 +91,17 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-		fontFamily: {
-			mono_sans: ['var(--font-mona-sans)'],
-			poppins: ['var(--font-poppins)'],
-			dancing_script: ['var(--font-dacing-script)']
-		},
+  		fontFamily: {
+  			mono_sans: [
+  				'var(--font-mona-sans)'
+  			],
+  			poppins: [
+  				'var(--font-poppins)'
+  			],
+  			dancing_script: [
+  				'var(--font-dacing-script)'
+  			]
+  		}
   	}
   },
   plugins: [require("tailwindcss-animate"), addVariablesForColors],
