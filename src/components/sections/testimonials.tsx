@@ -95,7 +95,7 @@ interface TestimonialCardProps {
 
 const TestimonialCard = ({ name, username, body }: TestimonialCardProps) => {
    return (
-      <div className="bg-zinc-100/50 p-4 w-64 md:w-96 rounded-md border border-zinc-200/20">
+      <div className="bg-zinc-100/50 p-3 sm:p-4 w-64 md:w-96 rounded-md border border-zinc-200/20">
          <div className="flex gap-3 items-center">
             <img 
                style={{

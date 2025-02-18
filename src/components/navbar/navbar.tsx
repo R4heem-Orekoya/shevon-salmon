@@ -53,7 +53,7 @@ const Navbar = () => {
                                        strokeDashoffset: 0,
                                     }}
                                     transition={{
-                                       duration: 1,
+                                       duration: 2,
                                     }}
                                  />
                               </svg>

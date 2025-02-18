@@ -32,7 +32,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
-      <body className={`${monaSans.variable} ${poppins.variable} ${dancingScript.variable} antialiased font-poppins h-[200vh]`}>
+      <body className={`${monaSans.variable} ${poppins.variable} ${dancingScript.variable} antialiased font-poppins`}>
         {/* <ReactLenis root options={{ duration: 2 }}> */}
           <Nav />
           {children}

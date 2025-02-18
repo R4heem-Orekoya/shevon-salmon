@@ -2,11 +2,12 @@ import { RiHandbagLine } from "@remixicon/react"
 import { ArrowDown } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import Portrait from "../../../public/shevon-portrait.jpg"
-import AsusImage from "../../../public/asus-aesthetic.jpg"
-import WatchImage from "../../../public/watch.jpg"
-import SpaceImage from "../../../public/space.jpg"
+import Portrait from "~/shevon.jpg"
+import AsusImage from "~/asus-aesthetic.jpg"
+import WatchImage from "~/watch.jpg"
+import SpaceImage from "~/space.jpg"
 import { SparklesText } from "@/components/ui/sparkles-text";
+import { Particles } from "../ui/particles"
 
 const imagesData = [
    {
@@ -77,6 +78,14 @@ const Hero = () => {
                Digital Products
             </Link>
          </div>
+         
+         <Particles
+            className="absolute inset-0 z-0"
+            quantity={100}
+            ease={80}
+            color={"#000000"}
+            refresh
+         />
       </section>
    );
 }
