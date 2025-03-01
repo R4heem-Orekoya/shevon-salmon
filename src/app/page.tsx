@@ -1,5 +1,6 @@
 import About from "@/components/sections/about"
 import Companies from "@/components/sections/companies"
+import Faq from "@/components/sections/faq"
 import Hero from "@/components/sections/hero"
 import Testimonials from "@/components/sections/testimonials"
 import Videos from "@/components/sections/videos"
@@ -12,6 +13,7 @@ const Page = () => {
       <Companies />
       <Videos />
       <Testimonials />
+      <Faq />
     </main>
   )
 }
