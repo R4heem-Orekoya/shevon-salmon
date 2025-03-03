@@ -50,6 +50,9 @@ importers:
       react-dom:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
+      react-masonry:
+        specifier: ^1.0.7
+        version: 1.0.7
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -69,6 +72,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.0.4(@types/react@19.0.10)
+      '@types/react-responsive-masonry':
+        specifier: ^2.6.0
+        version: 2.6.0
       eslint:
         specifier: ^9
         version: 9.21.0(jiti@1.21.7)
@@ -535,6 +541,9 @@ packages:
     resolution: {integrity: sha512-4fSQ8vWFkg+TGhePfUzVmat3eC14TXYSsiiDSLI0dVLsrm9gZFABjPy/Qu6TKgl1tq1Bu1yDsuQgY3A3DOjCcg==}
     peerDependencies:
       '@types/react': ^19.0.0
+
+  '@types/react-responsive-masonry@2.6.0':
+    resolution: {integrity: sha512-MF2ql1CjzOoL9fLWp6L3ABoyzBUP/YV71wyb3Fx+cViYNj7+tq3gDCllZHbLg1LQfGOQOEGbV2P7TOcUeGiR6w==}
 
   '@types/react@19.0.10':
     resolution: {integrity: sha512-JuRQ9KXLEjaUNjTWpzuR231Z2WpIwczOkBEIvbHNCzQefFIT0L8IqE6NV6ULLyC1SI/i234JnDoMkfg+RjQj2g==}
@@ -1650,6 +1659,9 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
+  react-masonry@1.0.7:
+    resolution: {integrity: sha512-cKhinTeygGtm+8y7YCTMKXNKtU0toJAcOBD4q7fv+JTc94bj93/xut3iZvjD60lZYek+WGM6en5w8P+63zHN9Q==}
+
   react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
@@ -2337,6 +2349,10 @@ snapshots:
       undici-types: 6.19.8
 
   '@types/react-dom@19.0.4(@types/react@19.0.10)':
+    dependencies:
+      '@types/react': 19.0.10
+
+  '@types/react-responsive-masonry@2.6.0':
     dependencies:
       '@types/react': 19.0.10
 
@@ -3628,6 +3644,10 @@ snapshots:
       scheduler: 0.23.2
 
   react-is@16.13.1: {}
+
+  react-masonry@1.0.7:
+    dependencies:
+      react: 18.3.1
 
   react@18.3.1:
     dependencies:

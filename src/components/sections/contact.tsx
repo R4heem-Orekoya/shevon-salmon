@@ -26,7 +26,7 @@ const Contact = () => {
             
             <Separator className="mt-2"/>
             
-            <div className="grid md:grid-cols-2 gap-x-4">
+            <div className="grid md:grid-cols-2 gap-x-6">
                <Link href="#" className="py-6 flex justify-between border-b group">
                   <div className="flex items-center gap-2 font-medium font-mono_sans">
                      <AtSignIcon className="w-5 h-5"/>

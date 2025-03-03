@@ -12,11 +12,11 @@ export const navLinks = [
       href: "/wallpapers"
    },
    {
-      label: "Products",
-      href: "https://shevonsalmon.gumroad.com/"
+      label: "Gears",
+      href: "/gears"
    },
    {
-      label: "Blogs",
-      href: "/blogs"
+      label: "Products",
+      href: "https://shevonsalmon.gumroad.com/"
    },
 ]

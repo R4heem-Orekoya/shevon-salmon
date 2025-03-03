@@ -13,6 +13,12 @@ const nextConfig = {
         port: '',
         pathname: '/an_webp/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        port: '',
+        pathname: '/photos/**',
+      },
     ]
   }
 };
