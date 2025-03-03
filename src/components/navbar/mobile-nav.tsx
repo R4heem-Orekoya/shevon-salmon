@@ -2,18 +2,41 @@
 
 import localFont from 'next/font/local'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import FlipText from '../text/flip'
 import { navLinks } from '@/consts/nav-links'
 import { motion, AnimatePresence } from "motion/react"
+import { cn } from '@/lib/utils'
 
 const againt = localFont({ src: './againts.otf' })
 
 const MobileNav = () => {
    const [isOpen, setIsOpen] = useState(false)
+   const [hoveredLink, setHoveredLink] = useState<string | null>(null)
+   const [pathname, setPathname] = useState('/')
+   
+   useEffect(() => {
+      setPathname(window.location.pathname)
+   }, [])
+   
+   const handleLinkHover = (href: string) => {
+      setHoveredLink(href)
+   }
+
+   const handleLinkLeave = () => {
+      setHoveredLink(null)
+   }
 
    const handleToggle = () => {
       setIsOpen((prev) => !prev)
+   }
+   
+   const getLinkColor = (href: string) => {
+      if (hoveredLink === null) return ''
+      
+      if (href === pathname || href === hoveredLink) return 'text-background'
+      
+      return 'text-background/40'
    }
 
    const menuVars = {
@@ -116,7 +139,12 @@ const MobileNav = () => {
                         <motion.li
                            variants={mobileLinkVars}
                            key={item.href} className='overflow-hidden'>
-                           <Link onClick={() => setIsOpen(false)} href={item.href} className='text-3xl sm:text-4xl md:text-5xl font-medium'>
+                           <Link 
+                              onClick={() => setIsOpen(false)} 
+                              onMouseEnter={() => handleLinkHover(item.href)}
+                              onMouseLeave={handleLinkLeave}
+                              href={item.href} 
+                              className={cn('text-3xl sm:text-4xl md:text-5xl font-medium transition-all duration-500', getLinkColor(item.href))}>
                               {item.label}
                            </Link>
                         </motion.li>

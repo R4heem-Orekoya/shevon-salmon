@@ -36,10 +36,10 @@ const Page = async () => {
    return (
       <main className="w-[min(1200px,90%)] mx-auto">
          <section className="py-12 md:pb-16 md:pt-10 lg:py-32 flex flex-col md:items-center gap-6 md:gap-12">
-            <h1 className="md:text-center font-semibold font-mono_sans text-3xl sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl mx-auto md:text-balance">
+            <h1 className="md:text-center font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl mx-auto md:text-balance">
                Free High Resolution Wallpapers By Shevon
             </h1>
-            <Button className="w-fit" size="lg">Get Premium Wallpapers</Button>
+            <Button className="w-fit font-mono_sans" size="lg">Get Premium Wallpapers</Button>
          </section>
          
          <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-5 max-w-5xl xl:max-w-6xl mx-auto pb-20">
