@@ -50,7 +50,7 @@ const Hero = () => {
             </div>
          </div>
 
-         <div className="absolute bottom-4 md:bottom-6 left-0 w-full flex justify-between items-baseline text-sm font-medium px-4">
+         <div className="absolute bottom-4 md:bottom-6 left-0 w-full flex justify-between items-baseline text-sm font-medium">
             <Link href={process.env.NEXT_PUBLIC_GUMROAD_URL!} className="flex items-center gap-2">
                <ArrowDown className="w-4 h-4 animate-bounce" />
                   Scroll to Explore
