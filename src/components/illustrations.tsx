@@ -29,4 +29,3 @@ export const Question = React.forwardRef<chAtElement, chAtProps>(
       </svg>
 
    ))
-Question.displayName = "chAt";
