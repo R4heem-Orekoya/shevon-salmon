@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-
+import { Question } from "../illustrations"
 
 const faqs = [
    {
@@ -34,22 +34,24 @@ const faqs = [
       question: "Does Shevon do paid promotions?",
       answer: "Yes! Shevon works with brands that align with his audience. Contact for more details."
    }
-];
-
-
-
+]
 
 const Faq = () => {
    return (
       <section className="py-16 max-w-5xl mx-auto grid gap-8 md:grid-cols-5">
-         <div className="md:col-span-2">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans tracking-tight">
-               FAQs
-            </h2>
-            <p className="text-muted-foreground mt-2 max-w-lg leading-1 font-poppins">
-               Find answers to the most common questions
-               about Shevon’s content, gear, and business inquiries.
-            </p>
+         <div className="md:col-span-2 flex flex-col justify-between">
+            <div>
+               <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans tracking-tight">
+                  FAQs
+               </h2>
+               <p className="text-muted-foreground mt-2 max-w-lg leading-1 font-poppins">
+                  Find answers to the most common questions
+                  about Shevon’s content, gear, and business inquiries.
+               </p>
+            </div>
+            <div className="max-md:hidden">
+               <Question />
+            </div>
          </div>
          <Accordion type="single" collapsible className="md:col-span-3">
             {faqs.map((faq, i) => (

@@ -7,17 +7,14 @@ import FlipText from '../text/flip'
 import { navLinks } from '@/consts/nav-links'
 import { motion, AnimatePresence } from "motion/react"
 import { cn } from '@/lib/utils'
+import { usePathname } from 'next/navigation'
 
 const againt = localFont({ src: './againts.otf' })
 
 const MobileNav = () => {
    const [isOpen, setIsOpen] = useState(false)
    const [hoveredLink, setHoveredLink] = useState<string | null>(null)
-   const [pathname, setPathname] = useState('/')
-   
-   useEffect(() => {
-      setPathname(window.location.pathname)
-   }, [])
+   const pathname = usePathname()
    
    const handleLinkHover = (href: string) => {
       setHoveredLink(href)
@@ -124,7 +121,7 @@ const MobileNav = () => {
 
                      <div onClick={handleToggle} className='cursor-pointer'>
                         <FlipText className='text-lg'>
-                           Menu
+                           Close
                         </FlipText>
                      </div>
                   </div>
