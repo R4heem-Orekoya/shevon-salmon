@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { tryCatch } from "@/lib/utils"
 import Image from "next/image"
 
 interface image {
@@ -20,7 +21,7 @@ interface image {
    alt: string 
 }
 
-const Page = async () => {
+async function fetchImages() {
    const res = await fetch(
       `https://api.pexels.com/v1/curated?per_page=60`,
       {
@@ -29,9 +30,19 @@ const Page = async () => {
          },
       }
    )
-    
+   
    const response = await res.json()
    const images: image[] = response.photos
+   
+   return images
+}
+
+const Page = async () => {
+   const { data: images, error } = await tryCatch(fetchImages())
+   
+   if(error) {
+      return <p>{error.message}</p>
+   }
    
    return (
       <main className="w-[min(1200px,90%)] mx-auto">

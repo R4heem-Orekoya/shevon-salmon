@@ -50,7 +50,7 @@ const companies = [
 function Companies() {
    return (
       <div className='py-8'>
-         <h2 className="text-center text-sm text-muted-foreground font-mono_sans font-medium tracking-wide">COMPANIES I'VE WORKED WITH</h2>
+         <h2 className="text-center uppercase font-mono_sans font-medium tracking-wide">Companies I've Worked With</h2>
          <div className="relative max-w-3xl mx-auto overflow-hidden">
             <Marquee repeat={2} pauseOnHover className="[--duration:20s] mt-6">
                {companies.map((item) => (

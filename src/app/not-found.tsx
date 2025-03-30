@@ -13,7 +13,7 @@ const NotFound = () => {
          </ScreenFitText>
          <p className="text-center text-xl">We Couldn't find the page you were looking for.</p>
          <Link href="/" className={buttonVariants({ size: "lg", className: "flex items-center gap-2 group" })}>
-            <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 duration-300"/>
+            <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 duration-300" />
             Go home
          </Link>
       </main>

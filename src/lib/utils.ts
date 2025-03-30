@@ -30,3 +30,37 @@ export const getRandomColor = () => {
   const randomIndex = Math.floor(Math.random() * colors.length);
   return colors[randomIndex];
 }
+
+
+type Text = { type: "text"; content: string }
+type Image = { type: "image"; src: string }
+type Video = { type: "video"; src: string }
+
+type Post = Text | Image | Video
+
+export type PostCatalog = {
+  [P in Post as P["type"]]: P;
+}
+
+
+
+type Success<T> = {
+  data: T;
+  error: null;
+}
+
+type Failure<Error> = {
+  data: null;
+  error: Error
+}
+
+type Result<T, E = Error> = Success<T> | Failure<E>
+
+export async function tryCatch<T>(promise: Promise<T>): Promise<Result<T>> {
+  try{
+    const data = await promise
+    return { data, error: null }
+  }catch(err){
+    return { data: null, error: err as Error }
+  }
+}
