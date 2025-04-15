@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mona_Sans, Poppins, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/navbar";
+import Footer from "@/components/sections/footer"
 import { ReactLenis } from "@/lib/lenis";
 
 const monaSans = Mona_Sans({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         <ReactLenis root options={{ duration: 2 }}>
           <Nav />
           {children}
+          <Footer />
         </ReactLenis>
       </body>
     </html>

@@ -14,7 +14,7 @@ const Navbar = () => {
    const pathname = usePathname()
 
    return (
-      <div className='w-[min(1200px,90%)] mx-auto bg-gradient-to-b from-white to-transparent sticky top-0 z-[9999] hidden lg:flex'>
+      <div className='w-[min(1200px,90%)] mx-auto bg-gradient-to-b from-white to-transparent sticky top-0 z-40 hidden lg:flex'>
          <nav className='w-full flex items-center justify-between h-20'>
             <Link href="/" className={`text-4xl ${againt.className} font-medium`}>
                SS7

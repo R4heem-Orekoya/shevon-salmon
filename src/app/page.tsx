@@ -2,7 +2,6 @@ import About from "@/components/sections/about"
 import Companies from "@/components/sections/companies"
 import Contact from "@/components/sections/contact"
 import Faq from "@/components/sections/faq"
-import Footer from "@/components/sections/footer"
 import Hero from "@/components/sections/hero"
 import S7on from "@/components/sections/s7on"
 import Testimonials from "@/components/sections/testimonials"
@@ -19,7 +18,6 @@ const Page = () => {
       <Faq />
       <Contact />
       <S7on />
-      <Footer />
     </main>
   )
 }

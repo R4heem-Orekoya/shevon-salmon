@@ -27,6 +27,8 @@ const gears = [
    },
 ];
 
+//https://examples.motion.dev/react/app-store : something similar to this for this page
+
 const GearsPage = () => {
    return (
       <div className="container mx-auto px-6 py-16">

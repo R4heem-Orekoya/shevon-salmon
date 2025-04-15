@@ -33,7 +33,7 @@ const MobileNav = () => {
       
       if (href === pathname || href === hoveredLink) return 'text-background'
       
-      return 'text-background/40'
+      return 'text-background/30'
    }
 
    const menuVars = {
@@ -93,14 +93,14 @@ const MobileNav = () => {
    }
 
    return (
-      <nav className='flex items-center lg:hidden h-20'>
+      <nav className='flex items-center lg:hidden h-20 sticky top-0 z-[9999]'>
          <div className='w-[90%] mx-auto flex justify-between items-center'>
             <Link href="/" className={`text-3xl ${againt.className} font-medium`}>
                SS7
             </Link>
 
             <div onClick={handleToggle} className='cursor-pointer'>
-               <FlipText className='text-lg'>
+               <FlipText className='text-lg select-none'>
                   Menu
                </FlipText>
             </div>
@@ -120,7 +120,7 @@ const MobileNav = () => {
                      </Link>
 
                      <div onClick={handleToggle} className='cursor-pointer'>
-                        <FlipText className='text-lg'>
+                        <FlipText className='text-lg select-none'>
                            Close
                         </FlipText>
                      </div>

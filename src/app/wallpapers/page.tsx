@@ -1,5 +1,7 @@
+import ShareButton from "@/components/share-button"
 import { Button } from "@/components/ui/button"
 import { tryCatch } from "@/lib/utils"
+import { ArrowDownToLine, Forward } from "lucide-react"
 import Image from "next/image"
 
 interface image {
@@ -37,7 +39,7 @@ async function fetchImages() {
    return images
 }
 
-const Page = async () => {
+export default async function Page() {
    const { data: images, error } = await tryCatch(fetchImages())
    
    if(error) {
@@ -46,16 +48,16 @@ const Page = async () => {
    
    return (
       <main className="w-[min(1200px,90%)] mx-auto">
-         <section className="py-12 md:pb-16 md:pt-10 lg:py-32 flex flex-col md:items-center gap-6 md:gap-12">
-            <h1 className="md:text-center font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl mx-auto md:text-balance">
-               Free High Resolution Wallpapers By Shevon
+         <section className="py-12 md:pb-16 md:pt-10 lg:py-20 flex flex-col items-center gap-6 md:gap-12">
+            <h1 className="text-center font-medium sm:font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-7xl max-w-3xl mx-auto md:text-balance">
+               Free High Resolution Wallpapers
             </h1>
             <Button className="w-fit font-mono_sans" size="lg">Get Premium Wallpapers</Button>
          </section>
          
-         <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-5 max-w-5xl xl:max-w-6xl mx-auto pb-20">
+         <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-4 max-w-5xl xl:max-w-6xl mx-auto pb-20">
             {images.map((image) => (
-               <div className="relative col-span-1 mb-5 rounded-xl overflow-hidden" key={image.id}>
+               <div className="relative col-span-1 mb-5 rounded-md overflow-hidden cursor-pointer group" key={image.id}>
                   <Image 
                      src={image.src.large} 
                      alt={image.alt} 
@@ -64,11 +66,21 @@ const Page = async () => {
                      className="object-cover"
                      blurDataURL={image.src.tiny}
                   />
+                  <div className="grid place-items-center absolute inset-0 bg-black/30 backdrop-blur-sm z-20 opacity-0 group-hover:opacity-100 transition-opacity">
+                     <h3 className="text-2xl text-white text-center font-mono_sans">{image.photographer}</h3>
+                  
+                     <div className="absolute bottom-0 right-0 flex items-center gap-4 p-4">
+                        <button>
+                           <ArrowDownToLine className="text-white w-5 h-5 hover:opacity-80 transition-opacity"/>
+                        </button>
+                        <ShareButton id={image.id}/>
+                     </div>
+                  </div>
                </div>   
             ))}
          </div>
+         
+         {/* <ShareDialog /> */}
       </main>
    )
 }
-
-export default Page
