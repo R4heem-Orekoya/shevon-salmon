@@ -93,7 +93,7 @@ const MobileNav = () => {
    }
 
    return (
-      <nav className='flex items-center lg:hidden h-20 sticky top-0 z-[9999]'>
+      <nav className='flex items-center lg:hidden h-20 sticky top-0 z-40'>
          <div className='w-[90%] mx-auto flex justify-between items-center'>
             <Link href="/" className={`text-3xl ${againt.className} font-medium`}>
                SS7

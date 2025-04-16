@@ -4,17 +4,17 @@ import { Button } from "./ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
 import { CheckIcon, CopyIcon, Facebook, Forward, Mail, Twitter } from "lucide-react"
 import { Input } from "./ui/input"
-import { useRef, useState } from "react"
+import { JSX, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip"
 
 interface ShareButtonProps {
    id: number | string
+   triggerComponent: JSX.Element
 }
 
-export default function ShareButton({ id }: ShareButtonProps) {
+export default function ShareButton({ id, triggerComponent }: ShareButtonProps) {
    const [copied, setCopied] = useState(false)
-   const [isOpen, setIsOpen] = useState(false)
    const inputRef = useRef<HTMLInputElement>(null)
 
    const handleCopy = () => {
@@ -26,16 +26,9 @@ export default function ShareButton({ id }: ShareButtonProps) {
    }
 
    return (
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog>
          <DialogTrigger asChild>
-            <button
-               onClick={(e) => {
-                  e.stopPropagation()
-                  setIsOpen(true)
-               }}
-            >
-               <Forward className="text-white w-5 h-5 hover:opacity-80 transition-opacity" />
-            </button>
+            {triggerComponent}
          </DialogTrigger>
          <DialogContent onClick={(e) => {
             e.stopPropagation()
