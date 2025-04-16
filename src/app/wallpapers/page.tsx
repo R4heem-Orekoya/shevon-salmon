@@ -1,27 +1,7 @@
-import ShareButton from "@/components/share-button"
+import ImageGrid from "@/components/image-dialog"
 import { Button } from "@/components/ui/button"
 import { tryCatch } from "@/lib/utils"
-import { ArrowDownToLine, Forward } from "lucide-react"
-import Image from "next/image"
-
-interface image {
-   id: number,
-   width: number,
-   height: number,
-   url: string,
-   photographer: string,
-   photographer_url: string,
-   photographer_id: number,
-   avg_color: string,
-   liked: boolean,
-   src: {
-      original: string,
-      large: string,
-      tiny: string,
-      medium: string
-   },
-   alt: string 
-}
+import { image } from "@/types"
 
 async function fetchImages() {
    const res = await fetch(
@@ -55,32 +35,7 @@ export default async function Page() {
             <Button className="w-fit font-mono_sans" size="lg">Get Premium Wallpapers</Button>
          </section>
          
-         <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-4 max-w-5xl xl:max-w-6xl mx-auto pb-20">
-            {images.map((image) => (
-               <div className="relative col-span-1 mb-5 rounded-md overflow-hidden cursor-pointer group" key={image.id}>
-                  <Image 
-                     src={image.src.large} 
-                     alt={image.alt} 
-                     width={image.width} 
-                     height={image.height} 
-                     className="object-cover"
-                     blurDataURL={image.src.tiny}
-                  />
-                  <div className="grid place-items-center absolute inset-0 bg-black/30 backdrop-blur-sm z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-                     <h3 className="text-2xl text-white text-center font-mono_sans">{image.photographer}</h3>
-                  
-                     <div className="absolute bottom-0 right-0 flex items-center gap-4 p-4">
-                        <button>
-                           <ArrowDownToLine className="text-white w-5 h-5 hover:opacity-80 transition-opacity"/>
-                        </button>
-                        <ShareButton id={image.id}/>
-                     </div>
-                  </div>
-               </div>   
-            ))}
-         </div>
-         
-         {/* <ShareDialog /> */}
+         <ImageGrid  images={images}/>  
       </main>
    )
 }

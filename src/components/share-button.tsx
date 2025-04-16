@@ -14,6 +14,7 @@ interface ShareButtonProps {
 
 export default function ShareButton({ id }: ShareButtonProps) {
    const [copied, setCopied] = useState(false)
+   const [isOpen, setIsOpen] = useState(false)
    const inputRef = useRef<HTMLInputElement>(null)
 
    const handleCopy = () => {
@@ -25,11 +26,20 @@ export default function ShareButton({ id }: ShareButtonProps) {
    }
 
    return (
-      <Dialog>
-         <DialogTrigger>
-            <Forward className="text-white w-5 h-5 hover:opacity-80 transition-opacity" />
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
+         <DialogTrigger asChild>
+            <button
+               onClick={(e) => {
+                  e.stopPropagation()
+                  setIsOpen(true)
+               }}
+            >
+               <Forward className="text-white w-5 h-5 hover:opacity-80 transition-opacity" />
+            </button>
          </DialogTrigger>
-         <DialogContent>
+         <DialogContent onClick={(e) => {
+            e.stopPropagation()
+         }}>
             <DialogHeader className="sm:text-center">
                <DialogTitle>Share Wallpaper Link</DialogTitle>
                <DialogDescription>
@@ -103,9 +113,3 @@ export default function ShareButton({ id }: ShareButtonProps) {
       </Dialog>
    )
 }
-
-
-// const searchParams = useSearchParams()
-// const id = searchParams.get('id')
-
-// if (!id) return null
