@@ -57,7 +57,7 @@ export default function ImageGrid({ images }: { images: image[] }) {
                if (!open) handleClose()
             }}>
                <DialogContent showCloseBtn={false} className="grid place-items-center max-w-screen h-screen bg-background sm:rounded-none border-none">
-                  <div className="relative aspect-[3/2] max-h-full w-full max-w-5xl border overflow-hidden rounded-lg">
+                  <div className="relative aspect-[9/16] sm:aspect-[3/2] max-h-full w-full max-w-5xl border overflow-hidden rounded-lg">
                      <DialogHeader className="flex flex-row items-center justify-between p-4 absolute top-0 z-20 w-full">
                         <DialogTitle hidden></DialogTitle>
                         <div className="flex items-center gap-3">
@@ -135,7 +135,7 @@ function ImageSlider({ images, selectedImage, setSelectedImage }: ImageSliderPro
          {images.map((image) => (
             <SwiperSlide className="w-full h-full" key={image.id}>
                <Image
-                  src={image.src.tiny}
+                  src={image.src.original}
                   alt={image.alt}
                   width={image.width}
                   height={image.height}

@@ -1,4 +1,4 @@
-import ImageGrid from "@/components/image-dialog"
+import ImageGrid from "@/components/_wallpaper-image-dialog"
 import { Button } from "@/components/ui/button"
 import { tryCatch } from "@/lib/utils"
 import { image } from "@/types"
