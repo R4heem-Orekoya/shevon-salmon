@@ -27,8 +27,8 @@ export default async function Page() {
    return (
       <main className="w-[min(1200px,90%)] mx-auto">
          <div className="relative py-12 md:pb-16 md:pt-10 lg:py-20 flex flex-col items-center gap-3">
-            <h1 className="text-center font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-7xl max-w-3xl mx-auto">Gallery</h1>
-            <p className="sm:text-lg font-mono_sans text-muted-foreground max-w-sm text-center">A curated look into my tech, lifestyle, setups,and moments.</p>
+            <h1 className="font-mono_sans text-center font-semibold text-3xl sm:text-5xl md:text-6xl lg:text-7xl max-w-3xl mx-auto">Gallery</h1>
+            <p className="sm:text-lg font-poppins text-muted-foreground max-w-sm text-center">A curated look into my tech, lifestyle, setups,and moments.</p>
          </div>
 
         <ImageDialog images={images}/>

@@ -116,7 +116,7 @@ function ImageSlider({ images, selectedImage }: ImageSliderProps) {
             slidesPerView={6}
             spaceBetween={10}
             // watchSlidesProgress
-            className="w-full"
+            className="w-full h-20"
          >
             {images.map((image) => (
                <SwiperSlide
@@ -124,7 +124,7 @@ function ImageSlider({ images, selectedImage }: ImageSliderProps) {
                   className="cursor-zoom-in"
                >
                   <Image
-                     src={image.src.tiny}
+                     src={image.src.medium}
                      alt={image.alt}
                      width={image.width}
                      height={image.height}

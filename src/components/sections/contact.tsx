@@ -15,11 +15,11 @@ const Contact = () => {
          </div>
          
          <div className="md:col-span-5">
-            <h3 className="text-4xl md:text-5xl lg:text-6xl xl:text-[4rem] leading-[1.1] font-semibold">
+            <h3 className="text-4xl md:text-5xl lg:text-6xl xl:text-[4.1rem] leading-[1.1] font-bold">
                Let's Create <br /> <span className="text-muted-foreground">Something Together!</span>
             </h3>
             
-            <Button className="my-8">
+            <Button size="lg" className="my-8">
                Contact me 
                <ArrowRight />
             </Button>
