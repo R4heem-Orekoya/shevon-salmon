@@ -21,10 +21,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'lummi.ai',
+        hostname: '"assets.lummi.ai',
         port: '',
-        pathname: '/api/render/image/**',
+        pathname: '/assets/**',
       },
+      
     ]
   }
 };

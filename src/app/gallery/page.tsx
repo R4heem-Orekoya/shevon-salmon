@@ -4,16 +4,16 @@ import { image } from "@/types"
 
 async function fetchImages() {
    const res = await fetch(
-      `https://api.pexels.com/v1/search?query=aesthetics&per_page=60`,
+      `https://api.lummi.ai/v1/images/search?query=desk setup`,
       {
          headers: {
-            Authorization: process.env.PEXELS_API_KEY!,
+            Authorization: `Bearer ${process.env.LUMNI_API_KEY}`,
          },
       }
    )
 
    const response = await res.json()
-   const images: image[] = response.photos
+   const images: image[] = response.data
 
    return images
 }
@@ -22,7 +22,9 @@ async function fetchImages() {
 export default async function Page() {
    const { data: images, error } = await tryCatch(fetchImages())
 
-   if (error) return <p>{error.message}</p>
+   if (error) {
+      return <p>{error.message}</p>
+   }
 
    return (
       <main className="w-[min(1200px,90%)] mx-auto">
@@ -31,8 +33,7 @@ export default async function Page() {
             <p className="sm:text-lg font-poppins text-muted-foreground max-w-sm text-center">A curated look into my tech, lifestyle, setups,and moments.</p>
          </div>
 
-        <ImageDialog images={images}/>
-
+         <ImageDialog images={images} />
       </main>
    )
 }

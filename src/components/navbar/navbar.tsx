@@ -22,11 +22,11 @@ const Navbar = () => {
             </Link>
 
             <ul className='flex items-center gap-6'>
-               {navLinks.map((item) => {
+               {navLinks.map((item, i) => {
                   const isSelected = pathname === item.href
 
                   return (
-                     <li key={item.href} className='relative'>
+                     <li key={item.href} className={cn('relative', { "hidden": navLinks.length === i+1})}>
                         <Link
                            href={item.href}
                            className={cn(

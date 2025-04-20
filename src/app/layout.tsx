@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/navbar";
 import Footer from "@/components/sections/footer"
 import { ReactLenis } from "@/lib/lenis";
+import S7on from "@/components/sections/s7on";
 
 const monaSans = Mona_Sans({
   variable: "--font-mona-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         <ReactLenis root options={{ duration: 2 }}>
           <Nav />
           {children}
+          <S7on />
           <Footer />
         </ReactLenis>
       </body>

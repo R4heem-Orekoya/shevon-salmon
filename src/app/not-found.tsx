@@ -1,5 +1,3 @@
-import GlitchText from "@/components/text/glitch"
-import { ScreenFitText } from "@/components/text/screen-fit"
 import { buttonVariants } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Image from "next/image"
@@ -8,7 +6,7 @@ import Falling from "~/crashed-error.svg"
 
 const NotFound = () => {
    return (
-      <main className="max-w-xl mx-auto py-16 flex flex-col items-center">
+      <main className="max-w-xl mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
          <div className="relative w-48 aspect-square">
             <Image
                src={Falling}

@@ -34,17 +34,24 @@ export default function ImageDialog({ images }: ImageDialogProps) {
                   <DialogTrigger asChild>
                      <div
                         onClick={() => setActiveImage(image)}
+                        style={{
+                           backgroundColor: image.colorPalette[0].hex,
+                           aspectRatio: image.aspectRatio
+                        }}
                         className="relative col-span-1 mb-3 rounded overflow-hidden cursor-pointer group"
                      >
                         <Image
-                           alt={image.alt}
-                           src={image.src.large}
+                           alt={image.description}
+                           src={image.url}
                            className="w-full h-full"
                            width={image.width}
                            height={image.height}
+                           loading="lazy"
+                           priority={false}
+                           unoptimized
                         />
                         <div className="absolute inset-0 p-4 flex items-end text-background backdrop-blur-sm bg-gradient-to-b from-transparent via-transparent to-black/50 opacity-0 group-hover:opacity-100 transition-opacity">
-                           <p className="mt-auto font-mono_sans font-medium text-xl">#{image.photographer}</p>
+                           <p className="mt-auto font-mono_sans font-medium text-xl">#{image.author.name}</p>
                         </div>
                      </div>
                   </DialogTrigger>
@@ -96,12 +103,14 @@ function ImageSlider({ images, selectedImage }: ImageSliderProps) {
             {images.map((image) => (
                <SwiperSlide key={image.id}>
                   <Image
-                     src={image.src.large}
-                     alt={image.alt}
+                     alt={image.description}
+                     src={image.url}
+                     className="w-full h-full object-contain"
                      width={image.width}
                      height={image.height}
-                     className="w-full h-full object-contain"
-                     blurDataURL={image.src.tiny}
+                     loading="lazy"
+                     priority={false}
+                     unoptimized
                   />
                </SwiperSlide>
             ))}
@@ -116,7 +125,7 @@ function ImageSlider({ images, selectedImage }: ImageSliderProps) {
             slidesPerView={6}
             spaceBetween={10}
             // watchSlidesProgress
-            className="w-full h-20"
+            className="w-full h-16 sm:h-20"
          >
             {images.map((image) => (
                <SwiperSlide
@@ -124,14 +133,15 @@ function ImageSlider({ images, selectedImage }: ImageSliderProps) {
                   className="cursor-zoom-in"
                >
                   <Image
-                     src={image.src.medium}
-                     alt={image.alt}
+                     alt={image.description}
+                     src={image.url}
+                     className="w-full h-full object-cover"
                      width={image.width}
                      height={image.height}
-                     className="w-full h-full object-cover"
-                     blurDataURL={image.src.tiny}
+                     loading="lazy"
+                     priority={false}
+                     unoptimized
                   />
-
                </SwiperSlide>
             ))}
          </Swiper>

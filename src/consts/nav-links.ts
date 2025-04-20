@@ -19,4 +19,8 @@ export const navLinks = [
       label: "Products",
       href: "https://shevonsalmon.gumroad.com/"
    },
+   {
+      label: "Contact",
+      href: "/contact"
+   },
 ]

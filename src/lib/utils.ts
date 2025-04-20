@@ -5,6 +5,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function removeSearchQueryAndHash(url: string) {
+  return url.split('?')[0].split('#')[0];
+}
+
 
 export function viewFormatter(views: number) {
   const formatter = Intl.NumberFormat("en", { notation: "compact" })

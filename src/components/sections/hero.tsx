@@ -6,7 +6,6 @@ import Portrait from "~/shevon.jpg"
 import AsusImage from "~/asus-aesthetic.jpg"
 import WatchImage from "~/watch.jpg"
 import SpaceImage from "~/space.jpg"
-import { SparklesText } from "@/components/ui/sparkles-text";
 import { Particles } from "../ui/particles"
 
 const imagesData = [
@@ -36,13 +35,7 @@ const Hero = () => {
                   <Image src={Portrait} alt="Shevon Salmon portrait picture" fill className="object-cover" placeholder="blur" />
                </div>
                <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans pt-4 pb-1 tracking-tight flex gap-1">
-                  Hi, I'm Shevon Salmon
-                  {/* <SparklesText 
-                     text="Shevon Salmon" 
-                     sparklesCount={5} 
-                     className="text-xl md:text-2xl lg:text-3xl font-mono_sans"
-                     colors={{ first: "#A78BFA", second: "#A78BFA" }}
-                  />  */}  
+                  Hi, I'm Shevon Salmon 
                </h1>
                <p className="md:text-lg text-muted-foreground text-center max-w-md text-balance">
                   Discover the perfect blend of tech and lifestyle

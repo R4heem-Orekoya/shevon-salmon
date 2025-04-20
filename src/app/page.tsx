@@ -17,7 +17,6 @@ const Page = () => {
       <Testimonials />
       <Faq />
       <Contact />
-      <S7on />
     </main>
   )
 }
