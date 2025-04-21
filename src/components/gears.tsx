@@ -2,9 +2,7 @@
 
 import { useMotionValue, motion, useSpring, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import React, { useRef } from "react";
-import { buttonVariants } from "./ui/button";
 
 const gears = [
    {
@@ -35,7 +33,7 @@ const gears = [
      name: "Small Rig Cage",
      description: "This modular camera cage provides added protection and multiple mounting points for accessories like microphones, monitors, and lights. A must-have for turning your camera into a fully rigged video setup.",
      link: "https://geni.us/SmallRigCameraCage",
-     image: ""
+     image: "/vercel.svg"
    },
    {
      name: "Small Rig Monitor Mount",
