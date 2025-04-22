@@ -1,24 +1,20 @@
 "use client"
 
-import React, { useId, useState } from "react"
+import React, { useState } from "react"
 import { PhoneIcon } from "lucide-react"
 import * as RPNInput from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
 import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-   Select,
-   SelectContent,
-   SelectGroup,
-   SelectItem,
-   SelectLabel,
-   SelectTrigger,
-} from "@/components/ui/select"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger } from "@/components/ui/select"
+import { TMessageFormSchema } from "@/lib/schemas"
+import { useFormContext, Controller } from "react-hook-form"
+
 
 export default function PhoneInputWithCountrySelect() {
-   const [open, setOpen] = React.useState(false)
-   const [value, setValue] = useState("")
+   const { control } = useFormContext<TMessageFormSchema>()
+
    const popularCountries = [
       "US", // United States
       "CA", // Canada
@@ -40,18 +36,24 @@ export default function PhoneInputWithCountrySelect() {
 
    return (
       <div className="*:not-first:mt-2" dir="ltr">
-         <Label htmlFor={"phone"}>Phone Number</Label>
-         <RPNInput.default
-            className="flex rounded-md shadow-xs"
-            countries={popularCountries}
-            international
-            flagComponent={FlagComponent}
-            countrySelectComponent={CountrySelect}
-            inputComponent={PhoneInput}
-            id={"phone"}
-            placeholder="Enter phone number"
-            value={value}
-            onChange={(newValue) => setValue(newValue ?? "")}
+         <Label htmlFor={"phone"}>Phone Number<span className="text-red-500 ml-1">*</span></Label>
+         <Controller
+            name="phoneNumber"
+            control={control}
+            render={({ field }) => (
+               <RPNInput.default
+                  className="flex rounded-md shadow-xs"
+                  countries={popularCountries}
+                  international
+                  flagComponent={FlagComponent}
+                  countrySelectComponent={CountrySelect}
+                  inputComponent={PhoneInput}
+                  id={"phone"}
+                  placeholder="Enter phone number (e.g. +2348012345678)"
+                  value={field.value} 
+                  onChange={(newValue) => field.onChange(newValue ?? "")}
+               />
+            )}
          />
       </div>
    )
