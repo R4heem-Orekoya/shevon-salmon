@@ -8,6 +8,7 @@ import { navLinks } from '@/consts/nav-links'
 import { motion, AnimatePresence } from "motion/react"
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
+import { fadeInLogo, fadeInUp } from '@/lib/motion'
 
 const againt = localFont({ src: './againts.otf' })
 
@@ -15,7 +16,7 @@ const MobileNav = () => {
    const [isOpen, setIsOpen] = useState(false)
    const [hoveredLink, setHoveredLink] = useState<string | null>(null)
    const pathname = usePathname()
-   
+
    const handleLinkHover = (href: string) => {
       setHoveredLink(href)
    }
@@ -27,12 +28,12 @@ const MobileNav = () => {
    const handleToggle = () => {
       setIsOpen((prev) => !prev)
    }
-   
+
    const getLinkColor = (href: string) => {
       if (hoveredLink === null) return ''
-      
+
       if (href === pathname || href === hoveredLink) return 'text-background'
-      
+
       return 'text-background/30'
    }
 
@@ -95,15 +96,24 @@ const MobileNav = () => {
    return (
       <nav className='flex items-center lg:hidden h-20 sticky top-0 z-40'>
          <div className='w-[90%] mx-auto flex justify-between items-center'>
-            <Link href="/" className={`text-3xl ${againt.className} font-medium`}>
-               SS7
-            </Link>
+            <motion.div
+               variants={fadeInLogo}
+               initial="hidden"
+               animate="visible"
+            >
+               <Link href="/" className={`text-3xl ${againt.className} font-medium`}>
+                  SS7
+               </Link>
+            </motion.div>
 
-            <div onClick={handleToggle} className='cursor-pointer'>
+            <motion.div
+               variants={fadeInUp}
+               initial="hidden"
+               animate="visible" onClick={handleToggle} className='cursor-pointer'>
                <FlipText className='text-lg select-none'>
                   Menu
                </FlipText>
-            </div>
+            </motion.div>
          </div>
 
          <AnimatePresence mode="wait">
@@ -136,11 +146,11 @@ const MobileNav = () => {
                         <motion.li
                            variants={mobileLinkVars}
                            key={item.href} className='overflow-hidden'>
-                           <Link 
-                              onClick={() => setIsOpen(false)} 
+                           <Link
+                              onClick={() => setIsOpen(false)}
                               onMouseEnter={() => handleLinkHover(item.href)}
                               onMouseLeave={handleLinkLeave}
-                              href={item.href} 
+                              href={item.href}
                               className={cn('text-3xl sm:text-4xl md:text-5xl font-medium transition-all duration-500', getLinkColor(item.href))}>
                               {item.label}
                            </Link>
@@ -150,7 +160,7 @@ const MobileNav = () => {
                </motion.div>
             )}
          </AnimatePresence>
-      </nav>
+      </nav >
    )
 }
 

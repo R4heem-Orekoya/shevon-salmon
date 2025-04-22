@@ -4,9 +4,10 @@ import localFont from 'next/font/local'
 import { navLinks } from '@/consts/nav-links'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Button } from '../ui/button'
+import { buttonVariants } from '../ui/button'
 import { cn } from '@/lib/utils'
 import { motion } from "motion/react"
+import { fadeInLogo, fadeInUp } from '@/lib/motion'
 
 const againt = localFont({ src: './againts.otf' })
 
@@ -16,17 +17,22 @@ const Navbar = () => {
    return (
       <div className='w-[min(1200px,90%)] mx-auto bg-gradient-to-b from-white to-transparent sticky top-0 z-40 hidden lg:flex'>
          <nav className='w-full flex items-center justify-between h-20'>
-            <Link href="/" className={`text-4xl ${againt.className} font-medium`}>
-               SS7
-               {/* <span>.</span> */}
-            </Link>
+            <motion.div
+               variants={fadeInLogo}
+               initial="hidden"
+               animate="visible"
+            >
+               <Link href="/" className={`text-4xl ${againt.className} font-medium`}>
+                  SS7
+               </Link>
+            </motion.div>
 
             <ul className='flex items-center gap-6'>
                {navLinks.map((item, i) => {
                   const isSelected = pathname === item.href
 
                   return (
-                     <li key={item.href} className={cn('relative', { "hidden": navLinks.length === i+1})}>
+                     <li key={item.href} className={cn('relative', { "hidden": navLinks.length === i + 1 })}>
                         <Link
                            href={item.href}
                            className={cn(
@@ -64,11 +70,15 @@ const Navbar = () => {
                })}
             </ul>
 
-            <Button asChild className='font-mono_sans'>
-               <Link href="/contact">
+            <motion.div
+               variants={fadeInUp}
+               initial="hidden"
+               animate="visible"
+               className='font-mono_sans'>
+               <Link className={buttonVariants()} href="/contact">
                   Contact me
                </Link>
-            </Button>
+            </motion.div>
          </nav>
       </div>
    )
