@@ -2,14 +2,14 @@ import { buttonVariants } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import Falling from "~/crashed-error.svg"
+import Crashed from "~/crashed-error.svg"
 
 const NotFound = () => {
    return (
       <main className="max-w-xl mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-80px)]">
          <div className="relative w-48 aspect-square">
             <Image
-               src={Falling}
+               src={Crashed}
                alt="404 image"
                fill
                className="object-cover"

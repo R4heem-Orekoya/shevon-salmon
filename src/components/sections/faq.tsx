@@ -1,5 +1,6 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Question } from "../illustrations"
+import Image from "next/image"
+import Question from "~/question-mark.svg"
 
 const faqs = [
    {
@@ -49,8 +50,8 @@ const Faq = () => {
                   about Shevon’s content, gear, and business inquiries.
                </p>
             </div>
-            <div className="max-md:hidden">
-               <Question />
+            <div className="max-md:hidden w-[70%] aspect-square mx-auto relative">
+               <Image src={Question} alt="question mark illustration" className="w-full h-full object-cover" fill/>
             </div>
          </div>
          <Accordion type="single" collapsible className="md:col-span-3">

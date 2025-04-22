@@ -33,7 +33,7 @@ export default async function Page() {
             <p className="sm:text-lg font-poppins text-muted-foreground max-w-sm text-center">A curated look into my tech, lifestyle, setups,and moments.</p>
          </div>
 
-         <ImageDialog images={images} />
+         <ImageDialog images={images!} />
       </main>
    )
 }
