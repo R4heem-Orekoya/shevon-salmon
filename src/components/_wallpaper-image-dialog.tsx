@@ -16,7 +16,7 @@ import 'swiper/css';
 export default function ImageGrid({ images }: { images: image[] }) {
    const router = useRouter()
    const searchParams = useSearchParams()
-   const id = searchParams.get("id") ? Number(searchParams.get("id")) : null
+   const id = searchParams.get("id")
 
    const [selectedImage, setSelectedImage] = useState<image | null>(null)
 
@@ -44,7 +44,6 @@ export default function ImageGrid({ images }: { images: image[] }) {
          <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-4 max-w-5xl xl:max-w-6xl mx-auto pb-20">
             {images.map((image) => (
                <ImageItem
-                  quality="large"
                   image={image}
                   key={image.id}
                   onClick={() => handleImageClick(image)}
@@ -56,7 +55,7 @@ export default function ImageGrid({ images }: { images: image[] }) {
             <Dialog open onOpenChange={(open) => {
                if (!open) handleClose()
             }}>
-               <DialogContent showCloseBtn={false} className="grid place-items-center max-w-screen h-screen bg-background sm:rounded-none border-none">
+               <DialogContent showCloseButton={false} className="grid place-items-center max-w-screen h-screen bg-background sm:rounded-none border-none">
                   <div className="relative aspect-[9/16] sm:aspect-[3/2] max-h-full w-full max-w-5xl border overflow-hidden rounded-lg">
                      <DialogHeader className="flex flex-row items-center justify-between p-4 absolute top-0 z-20 w-full">
                         <DialogTitle hidden></DialogTitle>
@@ -70,8 +69,8 @@ export default function ImageGrid({ images }: { images: image[] }) {
                            <ShareButton
                               id={selectedImage.id}
                               triggerComponent={
-                                 <Button 
-                                    size="icon" variant="outline" 
+                                 <Button
+                                    size="icon" variant="outline"
                                     className="rounded-full"
                                     onClick={(e) => {
                                        e.stopPropagation()
@@ -135,12 +134,14 @@ function ImageSlider({ images, selectedImage, setSelectedImage }: ImageSliderPro
          {images.map((image) => (
             <SwiperSlide className="w-full h-full" key={image.id}>
                <Image
-                  src={image.src.original}
-                  alt={image.alt}
+                  src={image.url}
+                  alt={image.description}
                   width={image.width}
                   height={image.height}
                   className="w-full h-full object-contain"
-                  blurDataURL={image.src.tiny}
+                  loading="lazy"
+                  priority={false}
+                  unoptimized
                />
             </SwiperSlide>
          ))}
@@ -191,24 +192,28 @@ function SliderControls() {
    )
 }
 
-type quality = keyof image["src"]
-
-function ImageItem({ image, onClick, quality }: { image: image, onClick?: () => void, quality: quality }) {
+function ImageItem({ image, onClick }: { image: image, onClick?: () => void }) {
    return (
       <div
          onClick={onClick}
+         style={{
+            aspectRatio: image.aspectRatio,
+            backgroundColor: image.colorPalette[0].hex
+         }} 
          className="relative col-span-1 mb-5 rounded-md overflow-hidden cursor-pointer group"
       >
          <Image
-            src={image.src[quality]}
-            alt={image.alt}
+            src={image.url}
+            alt={image.description}
             width={image.width}
             height={image.height}
             className="object-cover"
-            blurDataURL={image.src.tiny}
+            loading="lazy"
+            priority={false}
+            unoptimized
          />
          <div className="grid place-items-center absolute inset-0 bg-black/30 backdrop-blur-sm z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-            <h3 className="text-2xl text-white text-center font-mono_sans">{image.photographer}</h3>
+            <h3 className="text-2xl text-white text-center font-mono_sans">{image.author.name}</h3>
 
             <div className="absolute bottom-0 right-0 flex items-center gap-4 p-4">
                <button>

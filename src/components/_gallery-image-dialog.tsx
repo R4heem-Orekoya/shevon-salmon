@@ -14,7 +14,7 @@ import {
 import { Button } from "./ui/button"
 import { ArrowLeft, ArrowRight, X } from "lucide-react"
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules';
+import { FreeMode, Thumbs } from 'swiper/modules';
 import SwiperCore from "swiper"
 import "swiper/css"
 import "swiper/css/thumbs"
@@ -57,7 +57,7 @@ export default function ImageDialog({ images }: ImageDialogProps) {
                   </DialogTrigger>
 
                   {activeImage && (
-                     <DialogContent showCloseBtn={false} className="grid place-items-center max-w-screen h-screen bg-background sm:rounded-none border-none">
+                     <DialogContent showCloseButton={false} className="grid place-items-center max-w-screen h-screen bg-background sm:rounded-none border-none">
                         <div className="relative aspect-[9/16] sm:aspect-[3/2] max-h-full w-full max-w-5xl border overflow-hidden rounded-lg">
                            <DialogHeader className="flex flex-row items-center justify-between p-4 absolute top-0 z-20 w-full">
                               <DialogTitle></DialogTitle>

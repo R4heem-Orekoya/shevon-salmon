@@ -5,16 +5,16 @@ import { image } from "@/types"
 
 async function fetchImages() {
    const res = await fetch(
-      `https://api.pexels.com/v1/curated?per_page=60`,
+      `https://api.lummi.ai/v1/images/search?query=3dwallpaper`,
       {
          headers: {
-            Authorization: process.env.PEXELS_API_KEY!,
+            Authorization: `Bearer ${process.env.LUMNI_API_KEY}`,
          },
       }
    )
    
    const response = await res.json()
-   const images: image[] = response.photos
+   const images: image[] = response.data
    
    return images
 }
@@ -35,7 +35,7 @@ export default async function Page() {
             <Button className="w-fit" size="lg">Get Premium Wallpapers</Button>
          </section>
          
-         <ImageGrid  images={images}/>  
+         <ImageGrid images={images}/>  
       </main>
    )
 }

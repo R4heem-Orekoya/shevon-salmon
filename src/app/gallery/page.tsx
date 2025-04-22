@@ -4,7 +4,7 @@ import { image } from "@/types"
 
 async function fetchImages() {
    const res = await fetch(
-      `https://api.lummi.ai/v1/images/search?query=desk setup`,
+      `https://api.lummi.ai/v1/images/search?query=aesthetics`,
       {
          headers: {
             Authorization: `Bearer ${process.env.LUMNI_API_KEY}`,

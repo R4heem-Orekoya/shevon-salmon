@@ -1,12 +1,13 @@
 "use client"
 
-import { Button } from "./ui/button"
+import { Button, buttonVariants } from "./ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
 import { CheckIcon, CopyIcon, Facebook, Forward, Mail, Twitter } from "lucide-react"
 import { Input } from "./ui/input"
 import { JSX, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip"
+import Link from "next/link"
 
 interface ShareButtonProps {
    id: number | string
@@ -16,6 +17,8 @@ interface ShareButtonProps {
 export default function ShareButton({ id, triggerComponent }: ShareButtonProps) {
    const [copied, setCopied] = useState(false)
    const inputRef = useRef<HTMLInputElement>(null)
+   
+   const shareUrl = encodeURIComponent(`${process.env.NEXT_PUBLIC_DOMAIN}/wallpapers?id=${id}`);
 
    const handleCopy = () => {
       if (inputRef.current) {
@@ -41,15 +44,15 @@ export default function ShareButton({ id, triggerComponent }: ShareButtonProps) 
             </DialogHeader>
             <div className="flex flex-col items-center gap-6 py-4">
                <div className="flex items-center gap-4">
-                  <Button size="icon" variant="outline">
+                  <Link target="_blank" href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} className={buttonVariants({ size: "icon", variant: "outline" })}>
                      <Facebook className="w-5 h-5" />
-                  </Button>
-                  <Button size="icon" variant="outline">
+                  </Link>
+                  <Link target="_blank" href={`https://twitter.com/intent/post?text=${shareUrl}`} className={buttonVariants({ size: "icon", variant: "outline" })}>
                      <Twitter className="w-5 h-5" />
-                  </Button>
-                  <Button size="icon" variant="outline">
+                  </Link>
+                  <Link target="_blank" href={`mailto:?subject=Check this out!&body=${shareUrl}`} className={buttonVariants({ size: "icon", variant: "outline" })}>
                      <Mail className="w-5 h-5" />
-                  </Button>
+                  </Link>
                </div>
                <div className="relative gap-2 flex items-center">
                   <Input
