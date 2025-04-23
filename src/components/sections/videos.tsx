@@ -4,6 +4,8 @@ import Link from "next/link"
 import image from "../../../public/space.jpg"
 import { viewFormatter } from "@/lib/utils"
 import moment from "moment"
+import SlideText from "@/components/text/slide"
+import { BlurFade } from "../blur-fade"
 
 const videoData = [
    {
@@ -60,9 +62,9 @@ const Videos = () => {
    return (
       <section className="py-12 max-w-5xl mx-auto">
          <div className="flex items-center justify-between gap-4">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans tracking-tight">Youtube Videos</h2>
+            <SlideText as="h2" className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans tracking-tight">Youtube Videos</SlideText>
             
-            <Link href="https://youtube.com/@ShevonSalmon/videos" className="flex items-center gap-1 font-poppins tracking-tight hover:text-muted-foreground transition-all group">
+            <Link href="https://youtube.com/@ShevonSalmon/videos" className="flex items-center gap-1 font-poppins tracking-tight group">
                See All Videos
                <ArrowRight className="w-4 h-4 -rotate-45 group-hover:rotate-0 transition-all"/>
             </Link>
@@ -70,7 +72,7 @@ const Videos = () => {
          
          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
             {videoData.map((item, index) => (
-               <div key={index} className="col-span-1 ">
+               <BlurFade blur="3px" direction="up" offset={15} inView duration={0.5} delay={0.25 * index} key={index} className="col-span-1 ">
                   <Link href={item.videoLink}>
                      <div className="relative rounded-md aspect-[16/10] bg-zinc-100 overflow-hidden cursor-pointer group">
                         <Image src={item.thumbnail} alt={item.title} fill className="object-cover group-hover:scale-110 transition duration-500"/>
@@ -90,7 +92,7 @@ const Videos = () => {
                      </div>
                   </div>
                   
-               </div>
+               </BlurFade>
             ))}
          </div>
       </section>

@@ -1,5 +1,6 @@
 import { Marquee } from "@/components/ui/marquee";
 import { cn, getRandomColor } from "@/lib/utils";
+import SlideText from "@/components/text/slide"
 
 const reviews = [
    {
@@ -60,14 +61,14 @@ const secondRow = reviews.slice(reviews.length / 2);
 const Testimonials = () => {
    return (
       <section className="py-16 max-w-5xl mx-auto">
-         <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans tracking-tight">
+         <SlideText as="h2" className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans tracking-tight">
             Testimonials
-         </h2>
-         <p className="text-muted-foreground mt-2 max-w-lg leading-1 font-poppins">
+         </SlideText>
+         <SlideText as="p" className="text-muted-foreground mt-2 max-w-lg leading-1 font-poppins">
             Your Brand, Shevon's Influence:
             Discover the Impact of Collaborating with
             Shevon and Reaching His Engaged Audience
-         </p>
+         </SlideText>
 
          <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-8">
             <Marquee pauseOnHover className="[--duration:20s]">

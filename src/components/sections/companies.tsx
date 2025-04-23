@@ -9,6 +9,7 @@ import OperaLogo from "~/opera.svg"
 import BMWLogo from "~/bmw.svg"
 import Image from "next/image"
 import Link from "next/link"
+import SlideText from "../text/slide"
 
 const companies = [
    {
@@ -56,7 +57,7 @@ const companies = [
 function Companies() {
    return (
       <div className='py-8'>
-         <h2 className="text-center sm:text-lg uppercase font-mono_sans font-medium">Companies I've Worked With</h2>
+         <SlideText as="h2" className="text-center sm:text-lg font-mono_sans font-medium">Companies I've Worked With</SlideText>
          <div className="relative max-w-3xl mx-auto overflow-hidden">
             <Marquee repeat={2} pauseOnHover className="[--duration:20s] mt-6 gap-12">
                {companies.map((item) => (
