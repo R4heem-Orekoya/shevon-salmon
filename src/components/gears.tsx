@@ -157,7 +157,7 @@ const LinkItem = ({ name, imgSrc, description, href }: LinkProps) => {
          className="group relative flex items-center justify-between border-b-2 py-4 transition-colors duration-500 md:py-8"
       >
          <div>
-            <span className="relative z-10 block text-2xl font-semibold sm:font-bold font-mono_sans transition-opacity duration-500 md:text-4xl">
+            <span className="relative z-10 block text-2xl font-semibold sm:font-bold font-sora transition-opacity duration-500 md:text-4xl">
                {name}
             </span>
             <span className="relative z-10 mt-2 block text-base text-muted-foreground max-w-xl transition-colors duration-500">

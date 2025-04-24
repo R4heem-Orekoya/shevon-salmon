@@ -74,7 +74,7 @@ const Navbar = () => {
                variants={fadeInUp}
                initial="hidden"
                animate="visible"
-               className='font-mono_sans'>
+               className='font-sora'>
                <Link className={buttonVariants()} href="/contact">
                   Contact me
                </Link>

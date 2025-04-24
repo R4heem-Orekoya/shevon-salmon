@@ -56,7 +56,7 @@ const Hero = () => {
                      delay: 1.5,
                      duration: 0.3
                   }}
-                  className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans pt-4 pb-1 tracking-tight flex gap-1">
+                  className="text-xl md:text-2xl lg:text-3xl font-semibold font-sora pt-4 pb-1 tracking-tight flex gap-1">
                   Hi, I'm Shevon Salmon
                </motion.h1>
                <motion.p

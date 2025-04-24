@@ -15,7 +15,7 @@ const NotFound = () => {
                className="object-cover"
             />
          </div>
-         <p className="text-5xl sm:text-6xl text-foreground font-mono_sans font-semibold mt-4 mb-2">404</p>
+         <p className="text-5xl sm:text-6xl text-foreground font-sora font-semibold mt-4 mb-2">404</p>
          <p className="text-center text-muted-foreground font-light">
             Page not found, vibes still immaculate.
          </p>

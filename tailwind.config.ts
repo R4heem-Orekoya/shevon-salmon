@@ -110,11 +110,11 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				mono_sans: [
-					'var(--font-mona-sans)'
+				sora: [
+					'var(--font-sora)'
 				],
-				poppins: [
-					'var(--font-poppins)'
+				dm_sans: [
+					'var(--font-dm_sans)'
 				],
 				dancing_script: [
 					'var(--font-dacing-script)'

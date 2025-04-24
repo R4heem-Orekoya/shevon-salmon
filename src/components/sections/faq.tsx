@@ -3,8 +3,7 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Image from "next/image"
 import Question from "~/question-mark.svg"
-import SlideText from "../text/slide"
-import { motion } from "motion/react"
+import { TextAnimate } from "../text/animated"
 
 const faqs = [
    {
@@ -45,14 +44,14 @@ const Faq = () => {
    return (
       <section className="py-16 max-w-5xl mx-auto grid gap-8 md:grid-cols-5">
          <div className="md:col-span-2 flex flex-col justify-between">
-            <div>
-               <SlideText as="h2" className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans tracking-tight">
+            <div className="max-sm:text-center">
+               <TextAnimate as="h2" className="text-xl md:text-2xl lg:text-3xl font-semibold font-sora tracking-tight">
                   FAQs
-               </SlideText>
-               <SlideText as="p" className="text-muted-foreground mt-2 max-w-lg leading-1 font-poppins">
+               </TextAnimate>
+               <TextAnimate as="p" className="text-muted-foreground mt-2 max-w-lg leading-1 font-dm_sans">
                   Find answers to the most common questions
                   about Shevon’s content, gear, and business inquiries.
-               </SlideText>
+               </TextAnimate>
             </div>
             <div className="max-md:hidden w-[70%] aspect-square mx-auto relative">
                <Image src={Question} alt="question mark illustration" className="w-full h-full object-cover" fill />
@@ -61,16 +60,10 @@ const Faq = () => {
          <Accordion type="single" collapsible className="md:col-span-3">
             {faqs.map((faq, i) => (
                <AccordionItem value={`item-${i}`} key={faq.question}>
-                  <motion.div
-                     initial={{ opacity: 0, y: 50 }}
-                     whileInView={{ opacity: 1, y: 0 }}
-                     transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
-                  >
-                     <AccordionTrigger className="text-lg md:text-xl font-mono_sans opacity-75">{faq.question}</AccordionTrigger>
-                     <AccordionContent className="md:text-lg text-muted-foreground">
-                        {faq.answer}
-                     </AccordionContent>
-                  </motion.div>
+                  <AccordionTrigger className="text-lg md:text-xl font-sora opacity-75">{faq.question}</AccordionTrigger>
+                  <AccordionContent className="md:text-lg text-muted-foreground">
+                     {faq.answer}
+                  </AccordionContent>
                </AccordionItem>
             ))}
          </Accordion>

@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Mona_Sans, Poppins, Dancing_Script } from "next/font/google";
+import { Mona_Sans, Poppins, Dancing_Script, Sora, Nunito, Nunito_Sans, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/navbar";
 import Footer from "@/components/sections/footer"
 import { ReactLenis } from "@/lib/lenis";
 import S7on from "@/components/sections/s7on";
 
-const monaSans = Mona_Sans({
-  variable: "--font-mona-sans",
+const sora = Sora({
+  variable: "--font-sora",
   subsets: ["latin"],
 })
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const dm_sans = DM_Sans({
+  variable: "--font-dm_sans",
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
 })
 
@@ -34,11 +34,10 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
-      <body className={`${monaSans.variable} ${poppins.variable} ${dancingScript.variable} antialiased font-poppins`}>
+      <body className={`${sora.variable} ${dm_sans.variable} ${dancingScript.variable} antialiased font-dm_sans`}>
         <ReactLenis root options={{ duration: 2 }}>
           <Nav />
           {children}
-          <S7on />
           <Footer />
         </ReactLenis>
       </body>

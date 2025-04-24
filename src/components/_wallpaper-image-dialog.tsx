@@ -213,7 +213,7 @@ function ImageItem({ image, onClick }: { image: image, onClick?: () => void }) {
             unoptimized
          />
          <div className="grid place-items-center absolute inset-0 bg-black/30 backdrop-blur-sm z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-            <h3 className="text-2xl text-white text-center font-mono_sans">{image.author.name}</h3>
+            <h3 className="text-2xl text-white text-center font-sora">{image.author.name}</h3>
 
             <div className="absolute bottom-0 right-0 flex items-center gap-4 p-4">
                <button>

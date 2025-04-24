@@ -24,7 +24,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                      className="object-cover"
                   />
                </div>
-               <p className="text-5xl sm:text-6xl text-foreground font-mono_sans font-semibold mt-4 mb-2">Error</p>
+               <p className="text-5xl sm:text-6xl text-foreground font-sora font-semibold mt-4 mb-2">Error</p>
                <p className="text-center text-muted-foreground font-light">
                   {error.message}
                </p>
@@ -33,7 +33,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
                      <ArrowLeft className="w-6 h-6 group-hover:-translate-x-1 duration-300" />
                      Go home
                   </Link>
-               <Button onClick={() => reset()}>Try again</Button>
+                  <Button variant="outline" onClick={() => reset()}>Try again</Button>
                </div>
             </main>
          </body>

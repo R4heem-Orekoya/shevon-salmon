@@ -1,6 +1,6 @@
 import { Marquee } from "@/components/ui/marquee";
 import { cn, getRandomColor } from "@/lib/utils";
-import SlideText from "@/components/text/slide"
+import { TextAnimate } from "../text/animated";
 
 const reviews = [
    {
@@ -61,14 +61,19 @@ const secondRow = reviews.slice(reviews.length / 2);
 const Testimonials = () => {
    return (
       <section className="py-16 max-w-5xl mx-auto">
-         <SlideText as="h2" className="text-xl md:text-2xl lg:text-3xl font-semibold font-mono_sans tracking-tight">
-            Testimonials
-         </SlideText>
-         <SlideText as="p" className="text-muted-foreground mt-2 max-w-lg leading-1 font-poppins">
-            Your Brand, Shevon's Influence:
-            Discover the Impact of Collaborating with
-            Shevon and Reaching His Engaged Audience
-         </SlideText>
+         <div className="flex flex-col items-center gap-3 text-center">
+            <TextAnimate
+               as="h2" animation="blurInUp" className="text-2xl font-sora font-semibold tracking-tight sm:text-3xl xl:text-4xl"
+            >
+               Testimonials
+            </TextAnimate>
+            <TextAnimate
+               as="p"
+               className="max-w-sm text-muted-foreground"
+            >
+               Trusted by viewers. Backed by brands. Loved by the culture.
+            </TextAnimate>
+         </div>
 
          <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-8">
             <Marquee pauseOnHover className="[--duration:20s]">
@@ -81,8 +86,8 @@ const Testimonials = () => {
                   <TestimonialCard key={review.username} {...review} />
                ))}
             </Marquee>
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/12 bg-gradient-to-r from-white dark:from-background"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/12 bg-gradient-to-l from-white dark:from-background"></div>
          </div>
       </section>
    )
@@ -96,7 +101,7 @@ interface TestimonialCardProps {
 
 const TestimonialCard = ({ name, username, body }: TestimonialCardProps) => {
    return (
-      <div className="bg-zinc-100/50 p-3 sm:p-4 w-64 md:w-96 rounded-md border border-zinc-200/20">
+      <div className="bg-zinc-100/30 p-3 sm:p-4 w-64 md:w-96 rounded-md border border-zinc-200/20">
          <div className="flex gap-3 items-center">
             <img 
                style={{
@@ -107,7 +112,7 @@ const TestimonialCard = ({ name, username, body }: TestimonialCardProps) => {
             />
             
             <div className="flex flex-col">
-               <p className="text-sm font-semibold font-mono_sans">{name}</p>
+               <p className="text-sm font-semibold font-sora">{name}</p>
                <p className="text-xs font-light text-muted-foreground italic">{username}</p>
             </div>
          </div>

@@ -9,7 +9,7 @@ import OperaLogo from "~/opera.svg"
 import BMWLogo from "~/bmw.svg"
 import Image from "next/image"
 import Link from "next/link"
-import SlideText from "../text/slide"
+import { TextAnimate } from "../text/animated"
 
 const companies = [
    {
@@ -56,18 +56,18 @@ const companies = [
 
 function Companies() {
    return (
-      <div className='py-8'>
-         <SlideText as="h2" className="text-center sm:text-lg font-mono_sans font-medium">Companies I've Worked With</SlideText>
+      <div className='py-12'>
+         <TextAnimate as="h2" className="text-center sm:text-lg font-sora font-medium">Companies I've Worked With</TextAnimate>
          <div className="relative max-w-3xl mx-auto overflow-hidden">
             <Marquee repeat={2} pauseOnHover className="[--duration:20s] mt-6 gap-12">
                {companies.map((item) => (
-                  <Link href={item.link} target="_blank" key={item.name} className="relative grid place-items-center w-16 h-16 md:w-20 md:h-20 rounded hover:bg-zinc-100">
+                  <Link href={item.link} target="_blank" key={item.name} className="relative grid place-items-center w-16 h-16 md:w-20 md:h-20 rounded hover:bg-purple-100">
                      <Image src={item.logo} alt={`${item.name} Logo`} className="w-8"/>
                   </Link> 
                ))} 
             </Marquee>
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white dark:from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white dark:from-background"></div>
+            {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white dark:from-background"></div>
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white dark:from-background"></div> */}
          </div>
       </div>
    )

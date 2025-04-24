@@ -15,6 +15,16 @@ body {
 .sticky-scroll-div::-webkit-scrollbar{
   display: none;
 }
+span.swiper-pagination-bullet {
+  width: 30px;
+  height: 5px;
+  border-radius: 10px;
+  background:  hsl(240 3.8% 46.1% / 50%);
+  opacity: 1;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: hsl(240 10% 3.9%);
+}
 
 @layer base {
   :root {

@@ -3,14 +3,7 @@
 import { image } from "@/types"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import {
-   Dialog,
-   DialogClose,
-   DialogContent,
-   DialogHeader,
-   DialogTitle,
-   DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Button } from "./ui/button"
 import { ArrowLeft, ArrowRight, X } from "lucide-react"
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react"
@@ -18,6 +11,7 @@ import { FreeMode, Thumbs } from 'swiper/modules';
 import SwiperCore from "swiper"
 import "swiper/css"
 import "swiper/css/thumbs"
+import { motion } from "motion/react"
 
 interface ImageDialogProps {
    images: image[]
@@ -29,14 +23,31 @@ export default function ImageDialog({ images }: ImageDialogProps) {
    return (
       <>
          <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-3 pb-12">
-            {images.map((image) => (
+
+            {images.map((image, i) => (
                <Dialog key={image.id} onOpenChange={(open) => !open && setActiveImage(null)}>
                   <DialogTrigger asChild>
-                     <div
+                     <motion.div
                         onClick={() => setActiveImage(image)}
                         style={{
                            backgroundColor: image.colorPalette[0].hex,
                            aspectRatio: image.aspectRatio
+                        }}
+                        initial={{
+                           opacity: 0, scale: 0.8,
+                           filter: 'blur(7px)'
+                        }}
+                        whileInView={{
+                           opacity: 1,
+                           scale: 1,
+                           filter: 'blur(0px)',
+                        }}
+                        transition={{
+                           duration: 0.5,
+                           delay: 0.125
+                        }}
+                        viewport={{
+                           once: true
                         }}
                         className="relative col-span-1 mb-3 rounded overflow-hidden cursor-pointer group"
                      >
@@ -51,9 +62,9 @@ export default function ImageDialog({ images }: ImageDialogProps) {
                            unoptimized
                         />
                         <div className="absolute inset-0 p-4 flex items-end text-background backdrop-blur-sm bg-gradient-to-b from-transparent via-transparent to-black/50 opacity-0 group-hover:opacity-100 transition-opacity">
-                           <p className="mt-auto font-mono_sans font-medium text-xl">#{image.author.name}</p>
+                           <p className="mt-auto font-sora font-medium text-xl">#{image.author.name}</p>
                         </div>
-                     </div>
+                     </motion.div>
                   </DialogTrigger>
 
                   {activeImage && (
@@ -74,7 +85,7 @@ export default function ImageDialog({ images }: ImageDialogProps) {
                   )}
                </Dialog>
             ))}
-         </div>
+         </div >
       </>
    )
 }

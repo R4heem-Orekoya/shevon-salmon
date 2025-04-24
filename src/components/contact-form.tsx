@@ -26,6 +26,7 @@ export default function ContactForm() {
       <div className="max-w-5xl bg-zinc-50 p-4 sm:p-8 rounded-lg mx-auto">
          <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} className="max-w-2xl grid gap-6">
+               <h2 className="font-sora text-2xl sm:text-3xl font-semibold pb-4">Business Inquiries</h2>
                <div className="grid gap-2">
                   <Label htmlFor="name">Full Name<span className="text-red-500 ml-1">*</span></Label>
                   <div className="relative">

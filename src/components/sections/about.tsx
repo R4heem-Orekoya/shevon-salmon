@@ -1,48 +1,86 @@
 "use client"
 
 import Image from "next/image"
-import London from "~/london.jpg"
 import ShevonPortrait from "~/shevon.jpg"
-import Space from "~/space.jpg"
+import { TextAnimate } from "../text/animated"
+import Link from "next/link"
+import { buttonVariants } from "../ui/button"
 import { motion } from "motion/react"
-import { BlurFade } from "../blur-fade"
-import SlideText from "../text/slide"
 
-
-const About = () => {
+export default function About(){
    return (
       <section className="pt-12 pb-12 md:pt-32 md:pb-16 max-w-5xl mx-auto">
-         <div className="grid md:grid-cols-2 gap-10">
-            <div className="col-span-1 rounded-lg grid grid-cols-2 gap-4">
-               <BlurFade blur="3px" direction="down" offset={15} inView duration={0.5} delay={0.25} className="relative col-span-2 h-64 bg-zinc-100 transition-transform duration-300 rounded-md overflow-hidden">
-                  <Image src={ShevonPortrait} alt="Image of shevon salmon" fill className="object-cover" />
-               </BlurFade>
-               <BlurFade blur="3px" direction="right" offset={15} inView duration={0.5} delay={0.5} className="relative col-span-1 h-48 bg-zinc-100 transition-transform duration-300  rounded-md overflow-hidden">
-                  <Image src={Space} alt="Image of shevon salmon" fill className="object-cover" />
-               </BlurFade>
-               <BlurFade blur="3px" direction="left" offset={15} inView duration={0.5} delay={0.75} className="relative col-span-1 h-48 bg-zinc-100 transition-transform duration-300 rounded-md overflow-hidden">
-                  <Image src={London} alt="Image of shevon salmon" fill className="object-cover" />
-               </BlurFade>
-            </div>
-            <div className="py-4 flex flex-col justify-center">
-               <SlideText as="h2" className="text-2xl font-mono_sans font-semibold tracking-tight sm:text-3xl xl:text-4xl">
-                  About Me
-               </SlideText>
-               <div className="mt-6 space-y-6 text-muted-foreground">
-                  <SlideText as="p">
-                     Hey there! I'm Shevon Salmon — a tech-savvy lifestyle YouTuber passionate about creating content that educates, inspires, and entertains.
-                  </SlideText>
-                  <SlideText as="p">
-                     On my channel, you'll find everything from product reviews and tech deep-dives to day-in-the-life vlogs and creative gear setups. I love sharing what I learn and what I love with a community that’s always growing.
-                  </SlideText>
-                  <SlideText as="p">
-                     Let’s explore creativity, technology, and lifestyle together — and if you’re into all that, make sure to subscribe and join the journey!
-                  </SlideText>
-               </ div>
-            </div>
+         <div className="flex flex-col items-center gap-3 text-center">
+            <TextAnimate 
+               as="h2" 
+               animation="blurInUp"
+               className="text-2xl font-sora font-semibold tracking-tight sm:text-3xl xl:text-4xl"
+            >
+               About Me
+            </TextAnimate>
+            <TextAnimate as="p" animation="fadeIn" className="max-w-sm text-muted-foreground">
+               More than a creator—this is a lifestyle powered by innovation and style.
+            </TextAnimate>
          </div>
+
+         <div className="max-w-3xl my-12 space-y-4 text-left sm:text-center text-lg sm:text-xl mx-auto text-muted-foreground">
+            <TextAnimate as="p" animation="fadeIn">
+               I’m Shevon Salmon—a content creator passionate about capturing stories that live at the intersection of technology and personal style. From unboxing the latest gadgets to creating visual stories that inspire, I love sharing moments that resonate.
+            </TextAnimate>
+            <TextAnimate as="p" animation="fadeIn">
+               Whether it's through clean visuals, thoughtful reviews, or lifestyle vlogs, my goal is to inspire the next generation of creatives and tech enthusiasts.
+            </TextAnimate>
+            <TextAnimate as="p" animation="fadeIn">
+               When I'm not filming or editing, you’ll find me exploring new gear, optimizing setups, or brainstorming the next aesthetic video idea.
+            </TextAnimate>
+         </div>
+         <motion.div
+            initial={{
+               opacity: 0, scale: 0.8,
+               filter: 'blur(7px)'
+            }}
+            whileInView={{
+               opacity: 1,
+               scale: 1,
+               filter: 'blur(0px)',
+            }}
+            transition={{
+               duration: 0.8,
+               delay: 0.125
+            }}
+            viewport={{
+               once: true
+            }}
+            className="relative w-full max-w-3xl mx-auto aspect-video rounded-lg overflow-hidden"
+         >
+            <Image src={ShevonPortrait} alt="a portrait of shevon salmon" fill className="w-full h-full object-cover"/>
+         </motion.div>
+
+         <motion.div 
+            initial={{
+               opacity: 0, 
+               y: 20
+            }}
+            whileInView={{
+               opacity: 1,
+               y: 0
+            }}
+            transition={{
+               duration: 0.5,
+               delay: 0.125
+            }}
+            viewport={{
+               once: true
+            }}
+            className="mt-8 flex flex-wrap justify-center gap-4"
+         >
+            <Link href="https://youtube.com/@shevonsalmon" className={buttonVariants({ size: "lg"})}>
+               Watch on YouTube
+            </Link>
+            <Link href="/contact" className={buttonVariants({ variant: "outline", size: "lg" })}>
+               Work with Me
+            </Link>
+         </motion.div>
       </section>
    )
 }
-
-export default About

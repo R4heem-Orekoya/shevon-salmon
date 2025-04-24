@@ -1,57 +1,65 @@
-"use client"
+"use client";
 
 import { cn } from "@/lib/utils";
-import React, { useEffect, useRef, HTMLAttributes } from "react";
+import React, { useEffect, useRef, useState, HTMLAttributes } from "react";
 
-interface ScreenFitTextProps extends HTMLAttributes<HTMLSpanElement> {
-   children?: React.ReactNode
+interface ScreenFitTextProps extends HTMLAttributes<HTMLDivElement> {
+   children?: React.ReactNode;
 }
 
-export const ScreenFitText = ({ className, children = "Fit text to container", ...props }: ScreenFitTextProps) => {
-   const textRef = useRef<HTMLSpanElement | null>(null)
+export const ScreenFitText = ({
+   className,
+   children = "Fit text to container",
+   ...props
+}: ScreenFitTextProps) => {
+   const containerRef = useRef<HTMLDivElement | null>(null);
+   const textRef = useRef<HTMLDivElement | null>(null);
+   const [fontSize, setFontSize] = useState(100); // Initial guess
 
    useEffect(() => {
-      resizeText()
+      const resizeText = () => {
+         if (!containerRef.current || !textRef.current) return;
 
-      window.addEventListener("resize", resizeText)
+         const containerWidth = containerRef.current.offsetWidth;
+         let min = 1;
+         let max = 300;
+         let best = 100;
 
-      return () => {
-         window.removeEventListener("resize", resizeText)
-      }
-   }, [])
+         // Binary search for best font size
+         while (min <= max) {
+            const mid = Math.floor((min + max) / 2);
+            textRef.current.style.fontSize = `${mid}px`;
+            const textWidth = textRef.current.offsetWidth;
 
-   const resizeText = () => {
-      const text = textRef.current
-
-      if (!text || !text.parentElement) {
-         return;
-      }
-
-      // Use the parent element of the text element
-      const containerWidth = text.parentElement.offsetWidth;
-      let min = 1
-      let max = 2500
-
-      while (min <= max) {
-         const mid = Math.floor((min + max) / 2)
-         text.style.fontSize = mid + "px"
-
-         if (text.offsetWidth <= containerWidth) {
-            min = mid + 1
-         } else {
-            max = mid - 1
+            if (textWidth <= containerWidth) {
+               best = mid;
+               min = mid + 1;
+            } else {
+               max = mid - 1;
+            }
          }
-      }
-      text.style.fontSize = max + "px"
-   }
+
+         setFontSize(best);
+      };
+
+      resizeText();
+      window.addEventListener("resize", resizeText);
+      return () => window.removeEventListener("resize", resizeText);
+   }, [children]);
 
    return (
-      <span
-         className={cn("mx-auto whitespace-nowrap leading-none text-center font-semibold uppercase", className)}
-         ref={textRef}
+      <div
+         ref={containerRef}
+         className={cn("w-full text-center overflow-hidden", className)}
          {...props}
       >
-         {children}
-      </span>
-   )
-}
+         <div
+            ref={textRef}
+            style={{ fontSize }}
+            className="inline-block font-bold uppercase leading-none"
+         >
+            {children}
+         </div>
+      </div>
+   );
+};
