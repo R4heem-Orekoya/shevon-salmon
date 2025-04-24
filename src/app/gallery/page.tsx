@@ -30,7 +30,7 @@ export default async function Page() {
    return (
       <main className="w-[min(1200px,90%)] mx-auto">
          <div className="relative py-12 md:pb-16 md:pt-10 lg:py-20 flex flex-col items-center gap-3">
-            <TextAnimate as="h1" className="font-sora text-center font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-3xl mx-auto">Gallery</TextAnimate>
+            <TextAnimate as="h1" animation="blurInUp" className="font-sora text-center font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-7xl max-w-3xl mx-auto">Gallery</TextAnimate>
             <TextAnimate as="p" className="sm:text-lg font-dm_sans text-muted-foreground max-w-sm text-center">A curated look into my tech, lifestyle, setups,and moments.</TextAnimate>
          </div>
 

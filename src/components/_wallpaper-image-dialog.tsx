@@ -11,6 +11,7 @@ import { Button } from "./ui/button"
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import SwiperCore from "swiper"
 import 'swiper/css';
+import { motion } from "motion/react"
 
 
 export default function ImageGrid({ images }: { images: image[] }) {
@@ -194,12 +195,28 @@ function SliderControls() {
 
 function ImageItem({ image, onClick }: { image: image, onClick?: () => void }) {
    return (
-      <div
+      <motion.div
          onClick={onClick}
          style={{
             aspectRatio: image.aspectRatio,
             backgroundColor: image.colorPalette[0].hex
-         }} 
+         }}
+         initial={{
+            opacity: 0, scale: 0.8,
+            filter: 'blur(7px)'
+         }}
+         whileInView={{
+            opacity: 1,
+            scale: 1,
+            filter: 'blur(0px)',
+         }}
+         transition={{
+            duration: 0.5,
+            delay: 0.125
+         }}
+         viewport={{
+            once: true
+         }}
          className="relative col-span-1 mb-5 rounded-md overflow-hidden cursor-pointer group"
       >
          <Image
@@ -233,6 +250,6 @@ function ImageItem({ image, onClick }: { image: image, onClick?: () => void }) {
                />
             </div>
          </div>
-      </div>
+      </motion.div>
    )
 }

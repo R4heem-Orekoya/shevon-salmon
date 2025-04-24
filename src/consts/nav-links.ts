@@ -8,7 +8,7 @@ export const navLinks = [
       href: "/gallery"
    },
    {
-      label: "WallPapers",
+      label: "Wallpapers",
       href: "/wallpapers"
    },
    {

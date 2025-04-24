@@ -2,6 +2,7 @@
 
 import { ArrowUp } from "lucide-react"
 import S7on from "./s7on"
+import { Marquee } from "../ui/marquee"
 
 const Footer = () => {
    return (

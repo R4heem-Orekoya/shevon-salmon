@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import ShevonPortrait from "~/shevon.jpg"
+import ShevonPortrait from "~/shevon_2.jpg"
 import { TextAnimate } from "../text/animated"
 import Link from "next/link"
 import { buttonVariants } from "../ui/button"

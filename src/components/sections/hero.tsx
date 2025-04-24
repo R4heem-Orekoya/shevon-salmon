@@ -10,7 +10,6 @@ import WatchImage from "~/watch.jpg"
 import SpaceImage from "~/space.jpg"
 import { Particles } from "../ui/particles"
 import { motion } from "motion/react"
-import AnimatedText from "../text/animated"
 
 const imagesData = [
    {
@@ -89,10 +88,12 @@ const Hero = () => {
                   delay: 0.8
                }}
             >
-               <Link href={process.env.NEXT_PUBLIC_GUMROAD_URL!} className="flex items-center gap-2">
+               <button onClick={() => {
+                  window.scrollBy(0, window.innerHeight)
+               }} className="flex items-center gap-2">
                   <ArrowDown className="w-4 h-4 animate-bounce" />
                   Scroll to Explore
-               </Link>
+               </button>
             </motion.div>
 
             <div className="hidden sm:flex items-center justify-center gap-4 relative">

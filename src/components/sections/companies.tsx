@@ -20,37 +20,37 @@ const companies = [
    {
       name: "Asus",
       logo: AsusLogo,
-      link: 'https://www.opera.com/'
+      link: 'https://www.asus.com/'
    },
    {
       name: "Apple",
       logo: AppleLogo,
-      link: 'https://www.opera.com/'
+      link: 'https://www.apple.com/'
    },
    {
       name: "Intel",
       logo: IntelLogo,
-      link: 'https://www.opera.com/'
+      link: 'https://www.intel.com/'
    },
    {
       name: "Samsung",
       logo: SamsungLogo,
-      link: 'https://www.opera.com/'
+      link: 'https://www.samsung.com/'
    },
    {
       name: "Google",
       logo: GoogleLogo,
-      link: 'https://www.opera.com/'
+      link: 'https://about.google/'
    },
    {
       name: "Shell",
       logo: ShellLogo,
-      link: 'https://www.opera.com/'
+      link: 'https://www.shell.com/'
    },
    {
       name: "BMW",
       logo: BMWLogo,
-      link: 'https://www.opera.com/'
+      link: 'https://www.bmw.com/'
    },
 ]
 
@@ -66,8 +66,6 @@ function Companies() {
                   </Link> 
                ))} 
             </Marquee>
-            {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-white dark:from-background"></div>
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-white dark:from-background"></div> */}
          </div>
       </div>
    )
