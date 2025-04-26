@@ -74,7 +74,7 @@ export default function About(){
             }}
             className="mt-8 flex flex-wrap justify-center gap-4"
          >
-            <Link href="https://youtube.com/@shevonsalmon" className={buttonVariants({ size: "lg"})}>
+            <Link href="https://youtube.com/@shevonsalmon" target="_blank" className={buttonVariants({ size: "lg"})}>
                Watch on YouTube
             </Link>
             <Link href="/contact" className={buttonVariants({ variant: "outline", size: "lg" })}>

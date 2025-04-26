@@ -86,7 +86,7 @@ export default function Videos() {
          <VideoSlider />
          
          <div className="mx-auto mt-6">
-            <Link href="https://youtube.com/@ShevonSalmon/videos" className={buttonVariants({ size: "lg" })}>
+            <Link href="https://youtube.com/@ShevonSalmon/videos" target="_blank" className={buttonVariants({ size: "lg" })}>
                See All Videos
             </Link>
          </div>
@@ -128,7 +128,7 @@ function VideoSlider() {
          >
             {videoData.map((item, index) => (
                <SwiperSlide key={index} className="pb-16 cursor-grab">
-                  <Link href={item.videoLink}>
+                  <Link href={item.videoLink} target="_blank">
                      <div className="relative rounded-md aspect-[16/10] bg-zinc-100 overflow-hidden cursor-pointer group">
                         <Image src={item.thumbnail} alt={item.title} fill className="object-cover group-hover:scale-110 transition duration-500" />
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:opacity-100 opacity-0 duration-300 grid place-items-center rounded-full size-12 bg-zinc-100/20 border backdrop-blur-sm">

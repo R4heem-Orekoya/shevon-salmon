@@ -40,7 +40,7 @@ export default function Contact() {
             
             <div className="grid md:grid-cols-2 gap-x-6">
                <StaggerLink i={0}>
-                  <Link href={process.env.NEXT_PUBLIC_EMAIL_LINK!} className="py-6 flex justify-between border-b group">
+                  <Link href={process.env.NEXT_PUBLIC_EMAIL_LINK!} target="_blank" className="py-6 flex justify-between border-b group">
                      <div className="flex items-center gap-2 font-medium font-sora">
                         <AtSignIcon className="w-5 h-5"/>
                         Email
@@ -50,7 +50,7 @@ export default function Contact() {
                   </Link>
                </StaggerLink>
                <StaggerLink i={1}>
-                  <Link href={process.env.NEXT_PUBLIC_YOUTUBE_LINK!} className="py-6 flex justify-between border-b group">
+                  <Link href={process.env.NEXT_PUBLIC_YOUTUBE_LINK!} target="_blank" className="py-6 flex justify-between border-b group">
                      <div className="flex items-center gap-2 font-medium font-sora">
                         <YoutubeIcon className="w-5 h-5"/>
                         Youtube
@@ -60,7 +60,7 @@ export default function Contact() {
                   </Link>
                </StaggerLink>
                <StaggerLink i={2}>
-                  <Link href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK!} className="py-6 flex justify-between border-b group">
+                  <Link href={process.env.NEXT_PUBLIC_INSTAGRAM_LINK!} target="_blank" className="py-6 flex justify-between border-b group">
                      <div className="flex items-center gap-2 font-medium font-sora">
                         <InstagramIcon className="w-5 h-5"/>
                         Instagram
@@ -70,7 +70,7 @@ export default function Contact() {
                   </Link>
                </StaggerLink>
                <StaggerLink i={3}>
-                  <Link href={process.env.NEXT_PUBLIC_TWITTER_LINK!} className="py-6 flex justify-between border-b group">
+                  <Link href={process.env.NEXT_PUBLIC_TWITTER_LINK!} target="_blank" className="py-6 flex justify-between border-b group">
                      <div className="flex items-center gap-2 font-medium font-sora">
                         <TwitterIcon className="w-5 h-5"/>
                         Twitter
@@ -80,7 +80,7 @@ export default function Contact() {
                   </Link>
                </StaggerLink>
                <StaggerLink i={3}>
-                  <Link href={process.env.NEXT_PUBLIC_DISCORD_LINK!} className="py-6 flex justify-between border-b group">
+                  <Link href={process.env.NEXT_PUBLIC_DISCORD_LINK!} target="_blank" className="py-6 flex justify-between border-b group">
                      <div className="flex items-center gap-2 font-medium font-sora">
                         <DiscordIcon className="w-5 h-5"/>
                         Discord
@@ -90,7 +90,7 @@ export default function Contact() {
                   </Link>
                </StaggerLink>
                <StaggerLink i={3}>
-                  <Link href={process.env.NEXT_PUBLIC_TWITCH_LINK!} className="py-6 flex justify-between border-b group">
+                  <Link href={process.env.NEXT_PUBLIC_TWITCH_LINK!} target="_blank" className="py-6 flex justify-between border-b group">
                      <div className="flex items-center gap-2 font-medium font-sora">
                         <TwitchIcon className="w-5 h-5"/>
                         Twitter

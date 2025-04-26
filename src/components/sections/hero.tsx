@@ -124,7 +124,7 @@ const Hero = () => {
                   delay: 0.8
                }}
             >
-               <Link href={process.env.NEXT_PUBLIC_GUMROAD_URL!} className="flex items-center gap-2">
+               <Link href={process.env.NEXT_PUBLIC_GUMROAD_URL!} target="_blank" className="flex items-center gap-2">
                   <RiHandbagLine className="w-4 h-4 animate-wiggle" />
                   Digital Products
                </Link>
