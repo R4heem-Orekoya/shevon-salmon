@@ -68,6 +68,39 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Gear = {
+  _type: "gear";
+  gear?: string;
+  description?: string;
+  affiliateLink?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
+export type GearsPage = {
+  _id: string;
+  _type: "gearsPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heading?: string;
+  subHeading?: string;
+  gears?: Array<{
+    _key: string;
+  } & Gear>;
+  youtubeReferenceVideo?: string;
+};
+
 export type Post = {
   _id: string;
   _type: "post";
@@ -282,9 +315,9 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Gear | GearsPage | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./src/lib/sanity/utils/queries.ts
+// Source: ./src/sanity/utils/queries.ts
 // Variable: POSTS_QUERY
 // Query: *[_type == "post" && defined(slug.current)][0...12]{  _id, title, slug}
 export type POSTS_QUERYResult = Array<{
@@ -341,6 +374,16 @@ export type POST_QUERYResult = {
     _type: "image";
   } | null;
 } | null;
+// Variable: GEARS_PAGE_QUERY
+// Query: *[_type == "gearsPage"] {    heading, subHeading, gears, youtubeReferenceVideo}
+export type GEARS_PAGE_QUERYResult = Array<{
+  heading: string | null;
+  subHeading: string | null;
+  gears: Array<{
+    _key: string;
+  } & Gear> | null;
+  youtubeReferenceVideo: string | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -348,5 +391,6 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"post\" && defined(slug.current)][0...12]{\n  _id, title, slug\n}": POSTS_QUERYResult;
     "*[_type == \"post\" && slug.current == $slug][0]{\n  title, body, mainImage\n}": POST_QUERYResult;
+    "*[_type == \"gearsPage\"] {\n    heading, subHeading, gears, youtubeReferenceVideo\n}": GEARS_PAGE_QUERYResult;
   }
 }
