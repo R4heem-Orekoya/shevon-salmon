@@ -2,7 +2,6 @@
 
 import { useRouter, useSearchParams } from "next/navigation"
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog"
-import { image } from "@/types"
 import Image from "next/image"
 import { ArrowDownToLine, ArrowLeft, ArrowRight, ExternalLink, Forward, X } from "lucide-react"
 import ShareButton from "./share-button"
@@ -12,27 +11,34 @@ import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import SwiperCore from "swiper"
 import 'swiper/css';
 import { motion } from "motion/react"
+import { WALLPAPERS_PAGE_QUERYResult } from "@/root/sanity.types"
+import { urlFor } from "@/sanity/utils/image"
 
+type wallpaper = NonNullable<WALLPAPERS_PAGE_QUERYResult[number]["wallpapers"]>[number]
 
-export default function ImageGrid({ images }: { images: image[] }) {
+interface ImageGridProps {
+   wallpapers: wallpaper[]
+}
+
+export default function ImageGrid({ wallpapers }: ImageGridProps) {
    const router = useRouter()
    const searchParams = useSearchParams()
    const id = searchParams.get("id")
 
-   const [selectedImage, setSelectedImage] = useState<image | null>(null)
+   const [selectedImage, setSelectedImage] = useState<wallpaper | null>(null)
 
    useEffect(() => {
       if (id) {
-         const match = images.find((img) => img.id === id)
+         const match = wallpapers?.find((wallpaper) => wallpaper._key === id)
          setSelectedImage(match || null)
       } else {
          setSelectedImage(null)
       }
-   }, [id, images])
+   }, [id, wallpapers])
 
-   const handleImageClick = (image: image) => {
+   const handleImageClick = (image: wallpaper) => {
       setSelectedImage(image)
-      router.push(`/wallpapers?id=${image.id}`, { scroll: false })
+      router.push(`/wallpapers?id=${image._key}`, { scroll: false })
    }
 
    const handleClose = () => {
@@ -43,11 +49,11 @@ export default function ImageGrid({ images }: { images: image[] }) {
    return (
       <>
          <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-4 max-w-5xl xl:max-w-6xl mx-auto pb-20">
-            {images.map((image) => (
+            {wallpapers.map((wallpaper) => (
                <ImageItem
-                  image={image}
-                  key={image.id}
-                  onClick={() => handleImageClick(image)}
+                  wallpaper={wallpaper}
+                  key={wallpaper._key}
+                  onClick={() => handleImageClick(wallpaper)}
                />
             ))}
          </div>
@@ -68,7 +74,7 @@ export default function ImageGrid({ images }: { images: image[] }) {
                               <ArrowDownToLine className="h-6 w-6 text-muted-foreground" />
                            </Button>
                            <ShareButton
-                              id={selectedImage.id}
+                              id={selectedImage._key}
                               triggerComponent={
                                  <Button
                                     size="icon" variant="outline"
@@ -90,7 +96,7 @@ export default function ImageGrid({ images }: { images: image[] }) {
                      </DialogHeader>
 
                      <ImageSlider
-                        images={images}
+                        wallpapers={wallpapers}
                         selectedImage={selectedImage}
                         setSelectedImage={setSelectedImage}
                      />
@@ -103,12 +109,12 @@ export default function ImageGrid({ images }: { images: image[] }) {
 }
 
 interface ImageSliderProps {
-   images: image[]
-   selectedImage: image
-   setSelectedImage: Dispatch<SetStateAction<image | null>>
+   wallpapers: wallpaper[]
+   selectedImage: wallpaper
+   setSelectedImage: Dispatch<SetStateAction<wallpaper | null>>
 }
 
-function ImageSlider({ images, selectedImage, setSelectedImage }: ImageSliderProps) {
+function ImageSlider({ wallpapers, selectedImage, setSelectedImage }: ImageSliderProps) {
    const swiperRef = useRef<SwiperCore | null>(null)
    const router = useRouter()
 
@@ -117,10 +123,10 @@ function ImageSlider({ images, selectedImage, setSelectedImage }: ImageSliderPro
       if (!swiper) return
 
       const currentIndex = swiper.activeIndex
-      const currentImage = images[currentIndex]
-      if (currentImage && currentImage.id !== selectedImage?.id) {
+      const currentImage = wallpapers[currentIndex]
+      if (currentImage && currentImage._key !== selectedImage?._key) {
          setSelectedImage(currentImage)
-         router.push(`/wallpapers?id=${currentImage.id}`, { scroll: false })
+         router.push(`/wallpapers?id=${currentImage._key}`, { scroll: false })
       }
    }
 
@@ -128,21 +134,21 @@ function ImageSlider({ images, selectedImage, setSelectedImage }: ImageSliderPro
       <Swiper
          slidesPerView={1}
          className="relative w-full h-full"
-         initialSlide={images.findIndex(img => img.id === selectedImage?.id)}
+         initialSlide={wallpapers.findIndex(wallpaper => wallpaper._key === selectedImage?._key)}
          onSwiper={(swiper) => (swiperRef.current = swiper)}
          onSlideChange={handleSlideChange}
       >
-         {images.map((image) => (
-            <SwiperSlide className="w-full h-full" key={image.id}>
+         {wallpapers.map((wallpaper) => (
+            <SwiperSlide className="w-full h-full" key={wallpaper._key}>
                <Image
-                  src={image.url}
-                  alt={image.description}
-                  width={image.width}
-                  height={image.height}
+                  src={urlFor(wallpaper.image?.asset?.url!).quality(100).url()}
+                  alt={`Wallpaper image with title ${wallpaper.wallpaper}`}
+                  width={wallpaper.image?.asset?.metadata?.dimensions?.width}
+                  height={wallpaper.image?.asset?.metadata?.dimensions?.height}
                   className="w-full h-full object-contain"
                   loading="lazy"
-                  priority={false}
-                  unoptimized
+                  placeholder="blur"
+                  blurDataURL={wallpaper.image?.asset?.metadata?.lqip!}
                />
             </SwiperSlide>
          ))}
@@ -193,14 +199,10 @@ function SliderControls() {
    )
 }
 
-function ImageItem({ image, onClick }: { image: image, onClick?: () => void }) {
+function ImageItem({ wallpaper, onClick }: { wallpaper: wallpaper, onClick?: () => void }) {
    return (
       <motion.div
          onClick={onClick}
-         style={{
-            aspectRatio: image.aspectRatio,
-            backgroundColor: image.colorPalette[0].hex
-         }}
          initial={{
             opacity: 0, scale: 0.8,
             filter: 'blur(7px)'
@@ -220,24 +222,24 @@ function ImageItem({ image, onClick }: { image: image, onClick?: () => void }) {
          className="relative col-span-1 mb-5 rounded-md overflow-hidden cursor-pointer group"
       >
          <Image
-            src={image.url}
-            alt={image.description}
-            width={image.width}
-            height={image.height}
+            src={urlFor(wallpaper.image?.asset?.url!).quality(100).url()}
+            alt={`Wallpaper with title ${wallpaper.wallpaper}`}
+            width={wallpaper.image?.asset?.metadata?.dimensions?.width}
+            height={wallpaper.image?.asset?.metadata?.dimensions?.height}
             className="object-cover"
             loading="lazy"
-            priority={false}
-            unoptimized
+            placeholder="blur"
+            blurDataURL={wallpaper.image?.asset?.metadata?.lqip!}
          />
          <div className="grid place-items-center absolute inset-0 bg-black/30 backdrop-blur-sm z-20 opacity-0 group-hover:opacity-100 transition-opacity">
-            <h3 className="text-2xl text-white text-center font-sora">{image.author.name}</h3>
+            <h3 className="text-2xl text-white text-center font-sora">{wallpaper.wallpaper}</h3>
 
             <div className="absolute bottom-0 right-0 flex items-center gap-4 p-4">
                <button>
                   <ArrowDownToLine className="text-white w-5 h-5 hover:opacity-80 transition-opacity" />
                </button>
                <ShareButton
-                  id={image.id}
+                  id={wallpaper._key}
                   triggerComponent={
                      <button
                         onClick={(e) => {

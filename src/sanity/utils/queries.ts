@@ -14,3 +14,23 @@ export const GEARS_PAGE_QUERY =
   defineQuery(`*[_type == "gearsPage"] {
     heading, subHeading, gears, youtubeReferenceVideo
 }`)
+
+export const WALLPAPERS_PAGE_QUERY = defineQuery(`*[_type == "wallpapersPage"] {
+  heading,
+  premiumLink,
+  wallpapers[]{
+    _key,
+    wallpaper,
+    image{
+      asset->{
+        _id,
+        url,
+        metadata {
+          dimensions,
+          palette,
+          lqip
+        }
+      }
+    }
+  }
+}`)
