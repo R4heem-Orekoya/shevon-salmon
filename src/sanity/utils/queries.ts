@@ -34,3 +34,23 @@ export const WALLPAPERS_PAGE_QUERY = defineQuery(`*[_type == "wallpapersPage"] {
     }
   }
 }`)
+
+export const GALLERY_PAGE_QUERY = defineQuery(`*[_type == "galleryPage"] {
+  heading,
+  subHeading,
+  medias[]{
+    _key,
+    title,
+    image{
+      asset->{
+        _id,
+        url,
+        metadata {
+          dimensions,
+          palette,
+          lqip
+        }
+      }
+    }
+  }
+}`)

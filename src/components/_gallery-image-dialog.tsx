@@ -1,6 +1,5 @@
 "use client"
 
-import { image } from "@/types"
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
@@ -12,26 +11,30 @@ import SwiperCore from "swiper"
 import "swiper/css"
 import "swiper/css/thumbs"
 import { motion } from "motion/react"
+import { GALLERY_PAGE_QUERYResult } from "@/root/sanity.types"
+import { urlFor } from "@/sanity/utils/image"
+
+type media = NonNullable<GALLERY_PAGE_QUERYResult[number]["medias"]>[number]
 
 interface ImageDialogProps {
-   images: image[]
+   medias: media[]
 }
 
-export default function ImageDialog({ images }: ImageDialogProps) {
-   const [activeImage, setActiveImage] = useState<image | null>(null)
+export default function ImageDialog({ medias }: ImageDialogProps) {
+   const [activeImage, setActiveImage] = useState<media | null>(null)
 
    return (
       <>
          <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-3 pb-12">
 
-            {images.map((image, i) => (
-               <Dialog key={image.id} onOpenChange={(open) => !open && setActiveImage(null)}>
+            {medias.map((media, i) => (
+               <Dialog key={media._key} onOpenChange={(open) => !open && setActiveImage(null)}>
                   <DialogTrigger asChild>
                      <motion.div
-                        onClick={() => setActiveImage(image)}
+                        onClick={() => setActiveImage(media)}
                         style={{
-                           backgroundColor: image.colorPalette[0].hex,
-                           aspectRatio: image.aspectRatio
+                           backgroundColor: media.image?.asset?.metadata?.palette?.dominant?.background,
+                           aspectRatio: media.image?.asset?.metadata?.dimensions?.aspectRatio
                         }}
                         initial={{
                            opacity: 0, scale: 0.8,
@@ -52,17 +55,17 @@ export default function ImageDialog({ images }: ImageDialogProps) {
                         className="relative col-span-1 mb-3 rounded overflow-hidden cursor-pointer group"
                      >
                         <Image
-                           alt={image.description}
-                           src={image.url}
+                           alt={`This is an image in shevon gallery`}
+                           src={urlFor(media.image?.asset?.url!).width(800).quality(75).format('webp').url()}
                            className="w-full h-full"
-                           width={image.width}
-                           height={image.height}
+                           fill
+                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                            loading="lazy"
-                           priority={false}
-                           unoptimized
+                           placeholder="blur"
+                           blurDataURL={media.image?.asset?.metadata?.lqip!}
                         />
                         <div className="absolute inset-0 p-4 flex items-end text-background backdrop-blur-sm bg-gradient-to-b from-transparent via-transparent to-black/50 opacity-0 group-hover:opacity-100 transition-opacity">
-                           <p className="mt-auto font-sora font-medium text-xl">#{image.author.name}</p>
+                           <p className="mt-auto font-sora font-medium text-xl">#{media.title}</p>
                         </div>
                      </motion.div>
                   </DialogTrigger>
@@ -79,7 +82,7 @@ export default function ImageDialog({ images }: ImageDialogProps) {
                               </DialogClose>
                            </DialogHeader>
 
-                           <ImageSlider images={images} selectedImage={activeImage} />
+                           <ImageSlider images={medias} selectedImage={activeImage} />
                         </div>
                      </DialogContent>
                   )}
@@ -90,10 +93,9 @@ export default function ImageDialog({ images }: ImageDialogProps) {
    )
 }
 
-
 interface ImageSliderProps {
-   images: image[]
-   selectedImage: image
+   images: media[]
+   selectedImage: media
 }
 
 function ImageSlider({ images, selectedImage }: ImageSliderProps) {
@@ -107,21 +109,24 @@ function ImageSlider({ images, selectedImage }: ImageSliderProps) {
             modules={[Thumbs, FreeMode]}
             thumbs={{ swiper: thumbsSwiper }}
             slidesPerView={1}
-            initialSlide={images.findIndex(img => img.id === selectedImage?.id)}
+            initialSlide={images.findIndex(img => img._key === selectedImage?._key)}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             className="relative w-full h-[80%]"
          >
-            {images.map((image) => (
-               <SwiperSlide key={image.id}>
+            {images.map((media) => (
+               <SwiperSlide key={media._key} style={{
+                  aspectRatio: media.image?.asset?.metadata?.dimensions?.aspectRatio
+               }}>
                   <Image
-                     alt={image.description}
-                     src={image.url}
-                     className="w-full h-full object-contain"
-                     width={image.width}
-                     height={image.height}
+                     alt={`This is an image in shevon gallery`}
+                     src={urlFor(media.image?.asset?.url!).quality(100).format('webp').url()}
+                     quality={100}
+                     className="h-full object-contain"
+                     fill
+                     sizes="(max-width: 768px) 90vw, 80vw"
                      loading="lazy"
-                     priority={false}
-                     unoptimized
+                     placeholder="blur"
+                     blurDataURL={media.image?.asset?.metadata?.lqip!}
                   />
                </SwiperSlide>
             ))}
@@ -133,25 +138,29 @@ function ImageSlider({ images, selectedImage }: ImageSliderProps) {
             modules={[FreeMode, Thumbs]}
             onSwiper={setThumbsSwiper}
             freeMode={true}
-            slidesPerView={6}
+            slidesPerView={3}
             spaceBetween={10}
-            // watchSlidesProgress
+            breakpoints={{
+               640: { slidesPerView: 4 },
+               768: { slidesPerView: 4 },
+               1024: { slidesPerView: 6 },
+            }}
             className="w-full h-16 sm:h-20"
          >
-            {images.map((image) => (
+            {images.map((media) => (
                <SwiperSlide
-                  key={image.id}
+                  key={media._key}
                   className="cursor-zoom-in"
                >
                   <Image
-                     alt={image.description}
-                     src={image.url}
+                     alt={"This is an image in shevon gallery"}
+                     src={urlFor(media.image?.asset?.url!).width(600).quality(65).format('webp').url()}
                      className="w-full h-full object-cover"
-                     width={image.width}
-                     height={image.height}
+                     fill
+                     sizes="(max-width: 768px) 20vw, (max-width: 1200px) 10vw, 100px"
                      loading="lazy"
-                     priority={false}
-                     unoptimized
+                     placeholder="blur"
+                     blurDataURL={media.image?.asset?.metadata?.lqip!}
                   />
                </SwiperSlide>
             ))}

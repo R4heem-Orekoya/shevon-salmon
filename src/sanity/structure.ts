@@ -10,13 +10,14 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('author').title('Authors'),
       S.documentTypeListItem('gearsPage').title('Gears Page'),
       S.documentTypeListItem('wallpapersPage').title('Wallpapers Page'),
+      S.documentTypeListItem('galleryPage').title('Gallery Page'),
       S.divider(),
       ...S.documentTypeListItems().filter(
         (item) =>
           item.getId()
           && ![
             'post', 'category', 'author',
-            'gearsPage', 'wallpapersPage'
+            'gearsPage', 'wallpapersPage', 'galleryPage'
           ]
             .includes(item.getId()!),
       ),

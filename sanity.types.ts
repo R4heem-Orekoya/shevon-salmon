@@ -68,6 +68,36 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Media = {
+  _type: "media";
+  title?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
+export type GalleryPage = {
+  _id: string;
+  _type: "galleryPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  heading?: string;
+  subHeading?: string;
+  medias?: Array<{
+    _key: string;
+  } & Media>;
+};
+
 export type Wallpaper = {
   _type: "wallpaper";
   wallpaper?: string;
@@ -345,7 +375,7 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Wallpaper | WallpapersPage | Gear | GearsPage | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Media | GalleryPage | Wallpaper | WallpapersPage | Gear | GearsPage | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/utils/queries.ts
 // Variable: POSTS_QUERY
@@ -435,6 +465,27 @@ export type WALLPAPERS_PAGE_QUERYResult = Array<{
     } | null;
   }> | null;
 }>;
+// Variable: GALLERY_PAGE_QUERY
+// Query: *[_type == "galleryPage"] {  heading,  subHeading,  medias[]{    _key,    title,    image{      asset->{        _id,        url,        metadata {          dimensions,          palette,          lqip        }      }    }  }}
+export type GALLERY_PAGE_QUERYResult = Array<{
+  heading: string | null;
+  subHeading: string | null;
+  medias: Array<{
+    _key: string;
+    title: string | null;
+    image: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+          palette: SanityImagePalette | null;
+          lqip: string | null;
+        } | null;
+      } | null;
+    } | null;
+  }> | null;
+}>;
 
 // Query TypeMap
 import "@sanity/client";
@@ -444,5 +495,6 @@ declare module "@sanity/client" {
     "*[_type == \"post\" && slug.current == $slug][0]{\n  title, body, mainImage\n}": POST_QUERYResult;
     "*[_type == \"gearsPage\"] {\n    heading, subHeading, gears, youtubeReferenceVideo\n}": GEARS_PAGE_QUERYResult;
     "*[_type == \"wallpapersPage\"] {\n  heading,\n  premiumLink,\n  wallpapers[]{\n    _key,\n    wallpaper,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions,\n          palette,\n          lqip\n        }\n      }\n    }\n  }\n}": WALLPAPERS_PAGE_QUERYResult;
+    "*[_type == \"galleryPage\"] {\n  heading,\n  subHeading,\n  medias[]{\n    _key,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions,\n          palette,\n          lqip\n        }\n      }\n    }\n  }\n}": GALLERY_PAGE_QUERYResult;
   }
 }
