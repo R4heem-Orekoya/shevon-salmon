@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity'
+import { ImagesIcon } from '@sanity/icons'
 
 export const wallpapersPage = defineType({
    name: 'wallpapersPage',
    title: 'Wallpaper Page',
    type: 'document',
+   icon: ImagesIcon,
    fields: [
       defineField({
          name: 'heading',
@@ -17,8 +19,8 @@ export const wallpapersPage = defineType({
          type: 'url',
          validation: (Rule) =>
             Rule.uri({
-              scheme: ['https'],
-            }),
+               scheme: ['https'],
+            }).error('A valid HTTPS link is required.'),
       }),
       defineField({
          name: "wallpapers",

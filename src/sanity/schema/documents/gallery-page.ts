@@ -1,9 +1,11 @@
+import { CropIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
 export const galleryPage = defineType({
    name: "galleryPage",
    title: "Gallery Page",
    type: "document",
+   icon: CropIcon,
    fields: [
       defineField({
          name: 'heading',

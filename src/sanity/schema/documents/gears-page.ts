@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity'
+import { CogIcon } from '@sanity/icons'
 
 export const gearsPage = defineType({
    name: 'gearsPage',
    title: 'Gears Page',
    type: 'document',
+   icon: CogIcon,
    fields: [
       defineField({
          name: 'heading',
@@ -30,8 +32,8 @@ export const gearsPage = defineType({
          type: "url",
          validation: (Rule) =>
             Rule.uri({
-              scheme: ['https'],
-            }),
+               scheme: ['https'],
+            }).error('A valid HTTPS link is required.'),
       })
    ]
 })

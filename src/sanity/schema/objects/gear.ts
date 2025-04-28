@@ -24,7 +24,7 @@ export const gear = defineType({
          validation: (Rule) => 
             Rule.required().uri({
               scheme: ['https'],
-            }),
+            }).error('A valid HTTPS link is required.'),
       }),
       defineField({
          name: "image",
