@@ -1,27 +1,8 @@
 import ImageDialog from "@/components/_gallery-image-dialog"
 import { TextAnimate } from "@/components/text/animated"
-import { tryCatch } from "@/lib/utils"
 import { GALLERY_PAGE_QUERYResult } from "@/root/sanity.types"
 import { sanityFetch } from "@/sanity/utils/live"
 import { GALLERY_PAGE_QUERY } from "@/sanity/utils/queries"
-import { image } from "@/types"
-
-async function fetchImages() {
-   const res = await fetch(
-      `https://api.lummi.ai/v1/images/search?query=aesthetics`,
-      {
-         headers: {
-            Authorization: `Bearer ${process.env.LUMNI_API_KEY}`,
-         },
-      }
-   )
-
-   const response = await res.json()
-   const images: image[] = response.data
-
-   return images
-}
-
 
 export default async function Page() {
    const res = await sanityFetch({
@@ -29,8 +10,6 @@ export default async function Page() {
    })
    
    const data: GALLERY_PAGE_QUERYResult[number] = res.data[0]
-   
-   console.log(data);
    
    return (
       <main className="w-[min(1200px,90%)] mx-auto">

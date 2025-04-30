@@ -275,7 +275,6 @@ export type About = {
     listItem?: never;
     markDefs?: Array<{
       href?: string;
-      openInNewTab?: boolean;
       _type: "link";
       _key: string;
     }>;
@@ -485,7 +484,6 @@ export type HOME_PAGE_QUERYResult = Array<{
       listItem?: never;
       markDefs: Array<{
         href: string | null;
-        openInNewTab?: boolean;
         _type: "link";
         _key: string;
       }> | null;

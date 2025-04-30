@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import ShevonPortrait from "~/shevon_2.jpg"
 import { TextAnimate } from "../text/animated"
 import Link from "next/link"
 import { buttonVariants } from "../ui/button"
@@ -9,6 +8,7 @@ import { motion } from "motion/react"
 import { HOME_PAGE_QUERYResult } from "@/root/sanity.types"
 import { urlFor } from "@/sanity/utils/image"
 import PortableContent from "@/components/portable-text"
+import { PortableTextBlock } from "next-sanity"
 
 interface AboutProps { 
    content: HOME_PAGE_QUERYResult[number]["aboutSection"]
@@ -31,7 +31,7 @@ export default function About({ content }: AboutProps){
          </div>
 
          <div className="max-w-3xl my-12 space-y-4 text-left sm:text-center text-lg sm:text-xl mx-auto text-muted-foreground">
-            <PortableContent value={content?.content} />
+            <PortableContent value={content?.content! as PortableTextBlock[]} />
          </div>
          <motion.div
             initial={{

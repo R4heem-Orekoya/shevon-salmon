@@ -1,12 +1,13 @@
 "use client"
 
 import { PortableText } from '@portabletext/react'
+import type { PortableTextBlock } from '@portabletext/types'
 import Link from 'next/link'
 import { motion } from "motion/react"
 
 const siteUrl = process.env.NEXT_PUBLIC_DOMAIN
 
-const PortableContent = ({ value } : { value: any }) => {
+const PortableContent = ({ value } : { value: PortableTextBlock[] }) => {
    return (
       <PortableText
          value={value}

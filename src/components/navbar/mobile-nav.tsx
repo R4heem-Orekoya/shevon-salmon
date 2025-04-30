@@ -2,7 +2,7 @@
 
 import localFont from 'next/font/local'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import FlipText from '../text/flip'
 import { navLinks } from '@/consts/nav-links'
 import { motion, AnimatePresence } from "motion/react"

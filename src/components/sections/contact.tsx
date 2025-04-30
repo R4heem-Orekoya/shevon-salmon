@@ -24,7 +24,7 @@ export default function Contact() {
          <div className="md:col-span-5">
             <div className="flex flex-col">
                <TextAnimate as="h3" className="text-4xl md:text-5xl lg:text-6xl xl:text-[4.1rem] leading-[1.1] font-sora font-bold">
-                  Let's Create
+                  Let&apos;s Create
                </TextAnimate>
                <TextAnimate as="h3" className="text-4xl text-muted-foreground md:text-5xl lg:text-6xl xl:text-[4.1rem] leading-[1.1] font-sora font-bold">
                   Something Together!
@@ -110,7 +110,7 @@ interface StaggerLinkProps {
    i: number
 }
 
-function StaggerLink({ children, i }: StaggerLinkProps) {
+function StaggerLink({ children }: StaggerLinkProps) {
    return (
       <motion.div
          initial={{

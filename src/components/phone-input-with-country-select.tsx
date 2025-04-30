@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
 import { PhoneIcon } from "lucide-react"
 import * as RPNInput from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
@@ -87,10 +87,6 @@ const CountrySelect = ({
    onChange,
    options,
 }: CountrySelectProps) => {
-   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      onChange(event.target.value as RPNInput.Country)
-   }
-
    return (
       <Select
          disabled={disabled}

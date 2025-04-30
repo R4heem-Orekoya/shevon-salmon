@@ -6,6 +6,7 @@ import { WALLPAPERS_PAGE_QUERYResult } from "@/root/sanity.types"
 import { sanityFetch } from "@/sanity/utils/live"
 import { WALLPAPERS_PAGE_QUERY } from "@/sanity/utils/queries"
 import Link from "next/link"
+import { Suspense } from "react"
 
 export default async function Page() {
    const res = await sanityFetch({
@@ -26,8 +27,9 @@ export default async function Page() {
                </Link>
             </SlideUp>
          </section>
-         
-         <ImageGrid wallpapers={data.wallpapers!}/>  
+         <Suspense>
+            <ImageGrid wallpapers={data.wallpapers!}/>  
+         </Suspense>
       </main>
    )
 }

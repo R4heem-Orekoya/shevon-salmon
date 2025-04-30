@@ -4,6 +4,7 @@ import Question from "~/question-mark.svg"
 import { TextAnimate } from "../text/animated"
 import { HOME_PAGE_QUERYResult } from "@/root/sanity.types";
 import PortableContent from "../portable-text";
+import { PortableTextBlock } from "next-sanity";
  
 interface FaqProps {
    content: HOME_PAGE_QUERYResult[number]["faqSection"]
@@ -31,7 +32,7 @@ export default function Faq({ content }: FaqProps) {
                <AccordionItem value={`item-${i}`} key={faq.question}>
                   <AccordionTrigger className="text-lg md:text-xl font-sora opacity-75">{faq.question}</AccordionTrigger>
                   <AccordionContent className="md:text-lg text-muted-foreground">
-                     <PortableContent value={faq.answer} />
+                     <PortableContent value={faq.answer! as PortableTextBlock[]} />
                   </AccordionContent>
                </AccordionItem>
             ))}

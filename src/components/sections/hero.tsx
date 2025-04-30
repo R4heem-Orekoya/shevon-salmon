@@ -4,32 +4,10 @@ import { RiHandbagLine } from "@remixicon/react"
 import { ArrowDown } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import Portrait from "~/shevon.jpg"
-import AsusImage from "~/asus-aesthetic.jpg"
-import WatchImage from "~/watch.jpg"
-import SpaceImage from "~/space.jpg"
 import { Particles } from "../ui/particles"
 import { motion } from "motion/react"
 import { HOME_PAGE_QUERYResult } from "@/root/sanity.types"
 import { urlFor } from "@/sanity/utils/image"
-
-const imagesData = [
-   {
-      src: WatchImage,
-      alt: "Watch lifestyle image",
-      id: "image-1"
-   },
-   {
-      src: AsusImage,
-      alt: "Asus aesthetic setup",
-      id: "image-2"
-   },
-   {
-      src: SpaceImage,
-      alt: "Workspace setup",
-      id: "image-3"
-   }
-]
 
 interface HeroProps {
    content: HOME_PAGE_QUERYResult[number]["heroSection"]

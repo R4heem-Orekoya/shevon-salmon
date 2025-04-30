@@ -56,7 +56,7 @@ export default function AutoLineSlideText({
 
   return (
     <Component
-      ref={containerRef as any}
+      ref={containerRef}
       className={cn('relative overflow-hidden', className)}
     >
       {lines.length === 0 ? (

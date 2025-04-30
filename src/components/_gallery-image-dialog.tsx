@@ -27,7 +27,7 @@ export default function ImageDialog({ medias }: ImageDialogProps) {
       <>
          <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-3 pb-12">
 
-            {medias.map((media, i) => (
+            {medias.map((media) => (
                <Dialog key={media._key} onOpenChange={(open) => !open && setActiveImage(null)}>
                   <DialogTrigger asChild>
                      <motion.div

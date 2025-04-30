@@ -1,8 +1,8 @@
 "use client"
 
-import { Button, buttonVariants } from "./ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
-import { CheckIcon, CopyIcon, Facebook, Forward, Mail, Twitter } from "lucide-react"
+import { buttonVariants } from "./ui/button"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
+import { CheckIcon, CopyIcon, Facebook, Mail, Twitter } from "lucide-react"
 import { Input } from "./ui/input"
 import { JSX, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
