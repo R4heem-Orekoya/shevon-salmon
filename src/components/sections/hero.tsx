@@ -10,6 +10,8 @@ import WatchImage from "~/watch.jpg"
 import SpaceImage from "~/space.jpg"
 import { Particles } from "../ui/particles"
 import { motion } from "motion/react"
+import { HOME_PAGE_QUERYResult } from "@/root/sanity.types"
+import { urlFor } from "@/sanity/utils/image"
 
 const imagesData = [
    {
@@ -29,7 +31,11 @@ const imagesData = [
    }
 ]
 
-const Hero = () => {
+interface HeroProps {
+   content: HOME_PAGE_QUERYResult[number]["heroSection"]
+}
+
+const Hero = ({ content }: HeroProps) => {
    return (
       <section className="relative min-h-[calc(100dvh-70px)]">
          <div className="relative h-[calc(100dvh-70px)] flex flex-col items-center justify-center pb-32">
@@ -38,7 +44,13 @@ const Hero = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: "easeOut", delay: 1 }} className="relative size-36 rounded-full overflow-hidden text-center">
-                  <Image src={Portrait} alt="Shevon Salmon portrait picture" fill className="object-cover" placeholder="blur" />
+                  <Image 
+                     src={urlFor(content?.portrait?.asset?.url!).quality(70).url()} 
+                     alt="Shevon Salmon portrait picture" 
+                     fill className="object-cover" 
+                     placeholder="blur" 
+                     blurDataURL={content?.portrait?.asset?.metadata?.lqip!}
+                  />
                </motion.div>
                <motion.h1
                   initial={{
@@ -56,7 +68,7 @@ const Hero = () => {
                      duration: 0.3
                   }}
                   className="text-xl md:text-2xl lg:text-3xl font-semibold font-sora pt-4 pb-1 tracking-tight flex gap-1">
-                  Hi, I'm Shevon Salmon
+                  {content?.heading ?? "Hi, I'm Shevon Salmon"}
                </motion.h1>
                <motion.p
                   initial={{
@@ -74,7 +86,7 @@ const Hero = () => {
                      duration: 0.3
                   }}
                   className="md:text-lg text-muted-foreground text-center max-w-md text-balance">
-                  Discover the perfect blend of tech and lifestyle
+                  {content?.subHeading ?? "Discover the perfect blend of tech and lifestyle"}
                </motion.p>
             </div>
          </div>
@@ -97,20 +109,21 @@ const Hero = () => {
             </motion.div>
 
             <div className="hidden sm:flex items-center justify-center gap-4 relative">
-               {imagesData.map((item, index) => (
+               {content?.bottomImages?.map((item, index) => (
                   <motion.div
                      initial={{ opacity: 0, translateY: 30 }}
                      animate={{ opacity: 1, translateY: 0 }}
                      transition={{ duration: 0.5, delay: index * 0.25 }}
-                     key={item.id}
+                     key={item.asset?._id}
                      className="relative overflow-hidden w-28 h-32 aspect-video bg-zinc-100 rounded-md"
                   >
                      <Image
-                        src={item.src}
-                        alt={item.alt}
+                        src={urlFor(item.asset?.url!).quality(80).url()}
+                        alt={"This is an image."}
                         fill
                         className="object-cover"
                         placeholder="blur"
+                        blurDataURL={item.asset?.metadata?.lqip!}
                      />
                   </motion.div>
                ))}
@@ -124,7 +137,7 @@ const Hero = () => {
                   delay: 0.8
                }}
             >
-               <Link href={process.env.NEXT_PUBLIC_GUMROAD_URL!} target="_blank" className="flex items-center gap-2">
+               <Link href={content?.digitalProductLinks ?? process.env.NEXT_PUBLIC_GUMROAD_URL!} target="_blank" className="flex items-center gap-2">
                   <RiHandbagLine className="w-4 h-4 animate-wiggle" />
                   Digital Products
                </Link>

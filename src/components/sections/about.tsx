@@ -6,8 +6,15 @@ import { TextAnimate } from "../text/animated"
 import Link from "next/link"
 import { buttonVariants } from "../ui/button"
 import { motion } from "motion/react"
+import { HOME_PAGE_QUERYResult } from "@/root/sanity.types"
+import { urlFor } from "@/sanity/utils/image"
+import PortableContent from "@/components/portable-text"
 
-export default function About(){
+interface AboutProps { 
+   content: HOME_PAGE_QUERYResult[number]["aboutSection"]
+}
+
+export default function About({ content }: AboutProps){
    return (
       <section className="pt-12 pb-12 md:pt-32 md:pb-16 max-w-5xl mx-auto">
          <div className="flex flex-col items-center gap-3 text-center">
@@ -16,23 +23,15 @@ export default function About(){
                animation="blurInUp"
                className="text-2xl font-sora font-semibold tracking-tight sm:text-3xl xl:text-4xl"
             >
-               About Me
+               {content?.heading ?? "About Me"}
             </TextAnimate>
             <TextAnimate as="p" animation="fadeIn" className="max-w-sm text-muted-foreground">
-               More than a creator—this is a lifestyle powered by innovation and style.
+               {content?.subHeading ?? "More than a creator—this is a lifestyle powered by innovation and style."}
             </TextAnimate>
          </div>
 
          <div className="max-w-3xl my-12 space-y-4 text-left sm:text-center text-lg sm:text-xl mx-auto text-muted-foreground">
-            <TextAnimate as="p" animation="fadeIn">
-               I’m Shevon Salmon—a content creator passionate about capturing stories that live at the intersection of technology and personal style. From unboxing the latest gadgets to creating visual stories that inspire, I love sharing moments that resonate.
-            </TextAnimate>
-            <TextAnimate as="p" animation="fadeIn">
-               Whether it's through clean visuals, thoughtful reviews, or lifestyle vlogs, my goal is to inspire the next generation of creatives and tech enthusiasts.
-            </TextAnimate>
-            <TextAnimate as="p" animation="fadeIn">
-               When I'm not filming or editing, you’ll find me exploring new gear, optimizing setups, or brainstorming the next aesthetic video idea.
-            </TextAnimate>
+            <PortableContent value={content?.content} />
          </div>
          <motion.div
             initial={{
@@ -53,7 +52,13 @@ export default function About(){
             }}
             className="relative w-full max-w-3xl mx-auto aspect-video rounded-lg overflow-hidden"
          >
-            <Image src={ShevonPortrait} alt="a portrait of shevon salmon" fill className="w-full h-full object-cover"/>
+            <Image 
+               src={urlFor(content?.image?.asset?.url!).quality(80).url()} 
+               alt="a portrait of shevon salmon" 
+               fill className="w-full h-full object-cover"
+               placeholder="blur"
+               blurDataURL={content?.image?.asset?.metadata?.lqip!}
+            />
          </motion.div>
 
          <motion.div 

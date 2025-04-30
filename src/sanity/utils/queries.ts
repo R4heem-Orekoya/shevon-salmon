@@ -46,7 +46,90 @@ export const GALLERY_PAGE_QUERY = defineQuery(`*[_type == "galleryPage"] {
 }`)
 
 export const HOME_PAGE_QUERY = defineQuery(`*[_type == "homePage"] {
-  heroSection, aboutSection, 
-  companiesSection, ytVideosSection, 
-  testimonialsSection, faqSection
+  heroSection {
+    portrait {
+      asset->{
+        _id,
+        url,
+        metadata { dimensions, palette, lqip }
+      }
+    },
+    heading,
+    subHeading,
+    bottomImages[] {
+      asset->{
+        _id,
+        url,
+        metadata { dimensions, palette, lqip }
+      }
+    },
+    digitalProductLinks
+  },
+  aboutSection {
+    heading,
+    subHeading,
+    content[] {
+      ...,
+      markDefs[]{
+        ...,
+        _type == "link" => {
+          _type,
+          href
+        }
+      }
+    },
+    image {
+      asset->{
+        _id,
+        url,
+        metadata { dimensions, palette, lqip }
+      }
+    }
+  },
+  companiesSection {
+    heading,
+    companiesList[] {
+      companyName,
+      companyWebsiteLink,
+      companyLogo {
+        asset->{
+          _id,
+          url,
+          metadata { dimensions }
+        }
+      }
+    }
+  },
+  ytVideosSection {
+    heading,
+    subHeading,
+    videos[] {
+      videoId
+    }
+  },
+  testimonialsSection {
+    heading,
+    subHeading,
+    testimonials[] {
+      author,
+      quote
+    }
+  },
+  faqSection {
+    heading,
+    subHeading,
+    faqs[] {
+      question,
+      answer[] {
+        ...,
+        markDefs[]{
+          ...,
+          _type == "link" => {
+            _type,
+            href
+          }
+        }
+      }
+    }
+  }
 }`)

@@ -16,7 +16,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'i.ytimg.com',
         port: '',
-        pathname: '/an_webp/**',
+        pathname: '/vi/**',
       },
       {
         protocol: 'https',

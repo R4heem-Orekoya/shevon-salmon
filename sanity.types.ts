@@ -442,14 +442,125 @@ export type GALLERY_PAGE_QUERYResult = Array<{
   }> | null;
 }>;
 // Variable: HOME_PAGE_QUERY
-// Query: *[_type == "homePage"] {  heroSection, aboutSection,   companiesSection, ytVideosSection,   testimonialsSection, faqSection}
+// Query: *[_type == "homePage"] {  heroSection {    portrait {      asset->{        _id,        url,        metadata { dimensions, palette, lqip }      }    },    heading,    subHeading,    bottomImages[] {      asset->{        _id,        url,        metadata { dimensions, palette, lqip }      }    },    digitalProductLinks  },  aboutSection {    heading,    subHeading,    content[] {      ...,      markDefs[]{        ...,        _type == "link" => {          _type,          href        }      }    },    image {      asset->{        _id,        url,        metadata { dimensions, palette, lqip }      }    }  },  companiesSection {    heading,    companiesList[] {      companyName,      companyWebsiteLink,      companyLogo {        asset->{          _id,          url,          metadata { dimensions }        }      }    }  },  ytVideosSection {    heading,    subHeading,    videos[] {      videoId    }  },  testimonialsSection {    heading,    subHeading,    testimonials[] {      author,      quote    }  },  faqSection {    heading,    subHeading,    faqs[] {      question,      answer[] {        ...,        markDefs[]{          ...,          _type == "link" => {            _type,            href          }        }      }    }  }}
 export type HOME_PAGE_QUERYResult = Array<{
-  heroSection: Hero | null;
-  aboutSection: About | null;
-  companiesSection: Companies | null;
-  ytVideosSection: YtVideos | null;
-  testimonialsSection: TestimonialsSection | null;
-  faqSection: FaqSection | null;
+  heroSection: {
+    portrait: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+          palette: SanityImagePalette | null;
+          lqip: string | null;
+        } | null;
+      } | null;
+    } | null;
+    heading: string | null;
+    subHeading: string | null;
+    bottomImages: Array<{
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+          palette: SanityImagePalette | null;
+          lqip: string | null;
+        } | null;
+      } | null;
+    }> | null;
+    digitalProductLinks: string | null;
+  } | null;
+  aboutSection: {
+    heading: string | null;
+    subHeading: string | null;
+    content: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "normal";
+      listItem?: never;
+      markDefs: Array<{
+        href: string | null;
+        openInNewTab?: boolean;
+        _type: "link";
+        _key: string;
+      }> | null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
+    image: {
+      asset: {
+        _id: string;
+        url: string | null;
+        metadata: {
+          dimensions: SanityImageDimensions | null;
+          palette: SanityImagePalette | null;
+          lqip: string | null;
+        } | null;
+      } | null;
+    } | null;
+  } | null;
+  companiesSection: {
+    heading: string | null;
+    companiesList: Array<{
+      companyName: string | null;
+      companyWebsiteLink: string | null;
+      companyLogo: {
+        asset: {
+          _id: string;
+          url: string | null;
+          metadata: {
+            dimensions: SanityImageDimensions | null;
+          } | null;
+        } | null;
+      } | null;
+    }> | null;
+  } | null;
+  ytVideosSection: {
+    heading: string | null;
+    subHeading: string | null;
+    videos: Array<{
+      videoId: string | null;
+    }> | null;
+  } | null;
+  testimonialsSection: {
+    heading: string | null;
+    subHeading: string | null;
+    testimonials: Array<{
+      author: string | null;
+      quote: string | null;
+    }> | null;
+  } | null;
+  faqSection: {
+    heading: string | null;
+    subHeading: string | null;
+    faqs: Array<{
+      question: string | null;
+      answer: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal";
+        listItem?: never;
+        markDefs: Array<{
+          href: string | null;
+          _type: "link";
+          _key: string;
+        }> | null;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }> | null;
+    }> | null;
+  } | null;
 }>;
 
 // Query TypeMap
@@ -459,6 +570,6 @@ declare module "@sanity/client" {
     "*[_type == \"gearsPage\"] {\n    heading, subHeading, gears, youtubeReferenceVideo\n}": GEARS_PAGE_QUERYResult;
     "*[_type == \"wallpapersPage\"] {\n  heading,\n  premiumLink,\n  wallpapers[]{\n    _key,\n    wallpaper,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions,\n          palette,\n          lqip\n        }\n      }\n    }\n  }\n}": WALLPAPERS_PAGE_QUERYResult;
     "*[_type == \"galleryPage\"] {\n  heading,\n  subHeading,\n  medias[]{\n    _key,\n    title,\n    image{\n      asset->{\n        _id,\n        url,\n        metadata {\n          dimensions,\n          palette,\n          lqip\n        }\n      }\n    }\n  }\n}": GALLERY_PAGE_QUERYResult;
-    "*[_type == \"homePage\"] {\n  heroSection, aboutSection, \n  companiesSection, ytVideosSection, \n  testimonialsSection, faqSection\n}": HOME_PAGE_QUERYResult;
+    "*[_type == \"homePage\"] {\n  heroSection {\n    portrait {\n      asset->{\n        _id,\n        url,\n        metadata { dimensions, palette, lqip }\n      }\n    },\n    heading,\n    subHeading,\n    bottomImages[] {\n      asset->{\n        _id,\n        url,\n        metadata { dimensions, palette, lqip }\n      }\n    },\n    digitalProductLinks\n  },\n  aboutSection {\n    heading,\n    subHeading,\n    content[] {\n      ...,\n      markDefs[]{\n        ...,\n        _type == \"link\" => {\n          _type,\n          href\n        }\n      }\n    },\n    image {\n      asset->{\n        _id,\n        url,\n        metadata { dimensions, palette, lqip }\n      }\n    }\n  },\n  companiesSection {\n    heading,\n    companiesList[] {\n      companyName,\n      companyWebsiteLink,\n      companyLogo {\n        asset->{\n          _id,\n          url,\n          metadata { dimensions }\n        }\n      }\n    }\n  },\n  ytVideosSection {\n    heading,\n    subHeading,\n    videos[] {\n      videoId\n    }\n  },\n  testimonialsSection {\n    heading,\n    subHeading,\n    testimonials[] {\n      author,\n      quote\n    }\n  },\n  faqSection {\n    heading,\n    subHeading,\n    faqs[] {\n      question,\n      answer[] {\n        ...,\n        markDefs[]{\n          ...,\n          _type == \"link\" => {\n            _type,\n            href\n          }\n        }\n      }\n    }\n  }\n}": HOME_PAGE_QUERYResult;
   }
 }

@@ -33,7 +33,7 @@ export default function ShareButton({ id, triggerComponent }: ShareButtonProps) 
          <DialogTrigger asChild>
             {triggerComponent}
          </DialogTrigger>
-         <DialogContent onClick={(e) => {
+         <DialogContent showCloseButton onClick={(e) => {
             e.stopPropagation()
          }}>
             <DialogHeader className="sm:text-center">

@@ -1,89 +1,42 @@
 import { Marquee } from "@/components/ui/marquee";
 import { cn, getRandomColor } from "@/lib/utils";
 import { TextAnimate } from "../text/animated";
+import { HOME_PAGE_QUERYResult } from "@/root/sanity.types"
+import { Quote } from "lucide-react";
 
-const reviews = [
-   {
-      name: "Alice",
-      username: "@alice",
-      body: "This experience has completely changed the way I see things. The attention to detail, the design, and the overall execution are truly inspiring. It's rare to come across something that feels so carefully crafted and thoughtful.",
-   },
-   {
-      name: "Bob",
-      username: "@bob",
-      body: "Absolutely incredible. I can't recommend it enough! From start to finish, everything about this was amazing. It has set a new standard for quality and creativity. I’m genuinely blown away.",
-   },
-   {
-      name: "Charlie",
-      username: "@charlie",
-      body: "Every detail is perfect, from the smallest touch to the big picture. This is truly a masterpiece that reflects both skill and passion. I am in awe of how much effort must have gone into making this.",
-   },
-   {
-      name: "Daisy",
-      username: "@daisy",
-      body: "It's refreshing and unique in a way I haven't experienced before. Every moment spent with this feels rewarding. I absolutely love everything about it, and I can't wait to share it with others.",
-   },
-   {
-      name: "Eve",
-      username: "@eve",
-      body: "This exceeded my expectations in every possible way. The thoughtfulness that went into every element is apparent, and the result is something truly phenomenal. I’m genuinely impressed by the quality and execution.",
-   },
-   {
-      name: "Frank",
-      username: "@frank",
-      body: "I can't believe how good this is. It feels like something straight out of the future. Every feature is well thought out and serves a purpose. I highly recommend it to anyone who values excellence.",
-   },
-   {
-      name: "Grace",
-      username: "@grace",
-      body: "I’m beyond impressed. This is innovation at its best. The creativity and originality here are unmatched. It’s the kind of thing you experience once and can’t stop thinking about for weeks afterward.",
-   },
-   {
-      name: "Hank",
-      username: "@hank",
-      body: "It’s flawless in every way. Truly a groundbreaking experience that stands out from everything else I’ve seen. The level of care and attention put into this is unparalleled. Amazing work!",
-   },
-   {
-      name: "Ivy",
-      username: "@ivy",
-      body: "I feel so lucky to have discovered this. It’s like it was made just for me. The design, the functionality, and the overall experience are simply amazing. I can't stop telling everyone about it!",
-   },
-   {
-      name: "Jake",
-      username: "@jake",
-      body: "Mind-blowing in every sense of the word. I keep coming back to it every day because it’s just that good. It has transformed how I think about what’s possible. Truly remarkable.",
-   },
-]
+interface TestimonialsProps {
+   content: HOME_PAGE_QUERYResult[number]["testimonialsSection"]
+}
 
-const firstRow = reviews.slice(0, reviews.length / 2);
-const secondRow = reviews.slice(reviews.length / 2);
-
-const Testimonials = () => {
+const Testimonials = ({ content }: TestimonialsProps) => {
+   const firstRow = content?.testimonials?.slice(0, content?.testimonials.length / 2)
+   const secondRow = content?.testimonials?.slice(content?.testimonials.length / 2)
+   
    return (
       <section className="py-16 max-w-5xl mx-auto">
          <div className="flex flex-col items-center gap-3 text-center">
             <TextAnimate
                as="h2" animation="blurInUp" className="text-2xl font-sora font-semibold tracking-tight sm:text-3xl xl:text-4xl"
             >
-               Testimonials
+               {content?.heading ?? "Testimonials"}
             </TextAnimate>
             <TextAnimate
                as="p"
                className="max-w-sm text-muted-foreground"
             >
-               Trusted by viewers. Backed by brands. Loved by the culture.
+               {content?.subHeading ?? "Trusted by viewers. Backed by brands. Loved by the culture."}
             </TextAnimate>
          </div>
 
          <div className="relative flex w-full flex-col items-center justify-center overflow-hidden mt-8">
             <Marquee pauseOnHover className="[--duration:20s]">
-               {firstRow.map((review) => (
-                  <TestimonialCard key={review.username} {...review} />
+               {firstRow?.map((review) => (
+                  <TestimonialCard key={review.author} author={review.author!} quote={review.quote!} />
                ))}
             </Marquee>
             <Marquee reverse pauseOnHover className="[--duration:20s]">
-               {secondRow.map((review) => (
-                  <TestimonialCard key={review.username} {...review} />
+               {secondRow?.map((review) => (
+                  <TestimonialCard key={review.author} author={review.author!} quote={review.quote!} />
                ))}
             </Marquee>
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/12 bg-gradient-to-r from-white dark:from-background"></div>
@@ -93,32 +46,35 @@ const Testimonials = () => {
    )
 }
 
-interface TestimonialCardProps {
-   name: string
-   username: string
-   body: string
+type TestimonialCardProps = {
+   author: string;
+   quote: string;
 }
 
-const TestimonialCard = ({ name, username, body }: TestimonialCardProps) => {
+const TestimonialCard = ({ author, quote }: TestimonialCardProps) => {
    return (
       <div className="bg-zinc-100/30 p-3 sm:p-4 w-64 md:w-96 rounded-md border border-zinc-200/20">
-         <div className="flex gap-3 items-center">
-            <img 
-               style={{
-                  backgroundColor: getRandomColor()
-               }}
-               src={`https://api.dicebear.com/9.x/miniavs/svg?seed=${name}`} alt={name} 
-               className={cn("size-12 rounded-full object-cover")}
-            />
-            
-            <div className="flex flex-col">
-               <p className="text-sm font-semibold font-sora">{name}</p>
-               <p className="text-xs font-light text-muted-foreground italic">{username}</p>
+         <div className="flex justify-between items-start">
+            <div className="flex gap-3 items-center">
+               <img
+                  style={{
+                     backgroundColor: getRandomColor()
+                  }}
+                  src={`https://api.dicebear.com/9.x/miniavs/svg?seed=${author}`} alt={author}
+                  className={cn("size-12 rounded-full object-cover")}
+               />
+
+               <div className="flex flex-col">
+                  <p className="text-sm font-semibold font-sora">{author}</p>
+                  <p className="text-xs font-light text-muted-foreground italic">@{author}</p>
+               </div>
             </div>
+            
+            <Quote className="text-muted-foreground fill-muted-foreground opacity-20 w-5 h-5" strokeWidth={1.5} />
          </div>
-         
+
          <div className="mt-4">
-            <p className="text-sm font-light">{body}</p>
+            <p className="text-sm font-light">{quote}</p>
          </div>
       </div>
    )

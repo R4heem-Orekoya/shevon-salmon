@@ -16,16 +16,14 @@ export default async function Page(){
   
   const data: HOME_PAGE_QUERYResult[number] = res.data[0]
   
-  console.log(data);
-  
   return (
     <main className="w-[min(1200px,90%)] mx-auto">
-      <Hero />
-      <About />
-      <Companies />
-      <Videos />
-      <Testimonials />
-      <Faq />
+      <Hero content={data.heroSection} />
+      <About content={data.aboutSection} />
+      <Companies content={data.companiesSection} />
+      <Videos content={data.ytVideosSection} />
+      <Testimonials content={data.testimonialsSection}/>
+      <Faq content={data.faqSection}/>
       <Contact />
     </main>
   )

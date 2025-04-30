@@ -49,12 +49,6 @@ export const about = defineType({
                                  scheme: ["http", "https", "mailto", "tel"],
                               }),
                            },
-                           {
-                              name: "openInNewTab",
-                              type: "boolean",
-                              title: "Open in new tab?",
-                              initialValue: true,
-                           },
                         ],
                      },
                   ],
