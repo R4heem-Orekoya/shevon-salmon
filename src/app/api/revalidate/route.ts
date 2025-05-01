@@ -29,8 +29,9 @@ export async function POST(req: NextRequest) {
          now: Date.now(),
          body,
       });
-   } catch (error: any) {
+   } catch (error) {
       console.error(error)
+      //@ts-expect-error shows error is of type unknown
       return new Response(error.message, { status: 500 });
    }
 }
