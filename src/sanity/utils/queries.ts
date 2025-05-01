@@ -102,7 +102,7 @@ export const HOME_PAGE_QUERY = defineQuery(`*[_type == "homePage"] {
   ytVideosSection {
     heading,
     subHeading,
-    videos[] {
+    "videos": videos[0..11] {
       videoId
     }
   },

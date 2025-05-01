@@ -27,6 +27,13 @@ span.swiper-pagination-bullet {
   background: hsl(240 10% 3.9%);
 }
 
+@media (max-width: 640px) {
+  span.swiper-pagination-bullet {
+    width: 7px;
+    height: 7px;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

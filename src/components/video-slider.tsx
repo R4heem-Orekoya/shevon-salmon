@@ -9,13 +9,13 @@ import { viewFormatter } from "@/lib/utils"
 import { Play } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import "swiper/css/effect-fade"
 
 interface VideoSliderProps {
    videos: VideoInfo[]
 }
 
 export default function VideoSlider({ videos }: VideoSliderProps) {
-
    return (
       <motion.div
          initial={{ opacity: 0, y: 20 }}
@@ -26,8 +26,13 @@ export default function VideoSlider({ videos }: VideoSliderProps) {
       >
          <Swiper
             modules={[Pagination]}
-            spaceBetween={20}
+            spaceBetween={15}
             slidesPerView={1}
+            speed={850}
+            effect="fade"
+            fadeEffect={{
+               crossFade:true
+            }}
             breakpoints={{
                640: { slidesPerView: 1.5 },
                768: { slidesPerView: 2 },

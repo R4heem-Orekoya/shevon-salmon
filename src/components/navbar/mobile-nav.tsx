@@ -94,7 +94,7 @@ const MobileNav = () => {
    }
 
    return (
-      <nav className='flex items-center lg:hidden h-20 sticky top-0 z-40'>
+      <nav className='flex items-center lg:hidden h-16 sticky top-0 z-40 bg-white/30 backdrop-blur'>
          <div className='w-[90%] mx-auto flex justify-between items-center'>
             <motion.div
                variants={fadeInLogo}
@@ -110,7 +110,7 @@ const MobileNav = () => {
                variants={fadeInUp}
                initial="hidden"
                animate="visible" onClick={handleToggle} className='cursor-pointer'>
-               <FlipText className='text-lg select-none'>
+               <FlipText className='text-lg font-medium select-none'>
                   Menu
                </FlipText>
             </motion.div>

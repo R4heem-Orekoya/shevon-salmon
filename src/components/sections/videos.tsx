@@ -51,7 +51,7 @@ interface VideosProps {
 
 export default async function Videos({ content }: VideosProps) {
    const results = await Promise.all(
-      content?.videos!?.map(async (item) => {
+      content?.videos!?.slice(0, 9).map(async (item) => {
          if (!item.videoId) return null;
          const { data, error } = await tryCatch(fetchVideo(item.videoId));
          if (!data || error) {

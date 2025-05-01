@@ -25,7 +25,7 @@ export default function ImageDialog({ medias }: ImageDialogProps) {
 
    return (
       <>
-         <div className="columns-1 sm:columns-2 md:columns-3 xl:columns-4 gap-3 pb-12">
+         <div className="columns-2 sm:columns-3 md:columns-4 xl:columns-5 gap-3 pb-12">
 
             {medias.map((media) => (
                <Dialog key={media._key} onOpenChange={(open) => !open && setActiveImage(null)}>
@@ -52,7 +52,7 @@ export default function ImageDialog({ medias }: ImageDialogProps) {
                         viewport={{
                            once: true
                         }}
-                        className="relative col-span-1 mb-3 rounded overflow-hidden cursor-pointer group"
+                        className="relative col-span-1 mb-3 rounded-md overflow-hidden cursor-pointer group"
                      >
                         <Image
                            alt={`This is an image in shevon gallery`}
