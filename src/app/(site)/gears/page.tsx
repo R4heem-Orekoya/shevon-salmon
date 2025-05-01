@@ -7,7 +7,8 @@ import { GEARS_PAGE_QUERY } from "@/sanity/utils/queries";
 
 export default async function GearsPage() {
    const res = await sanityFetch({
-      query: GEARS_PAGE_QUERY
+      query: GEARS_PAGE_QUERY,
+      tags: ["gearsPage"]
    })
 
    const data: GEARS_PAGE_QUERYResult[number] = res.data[0]

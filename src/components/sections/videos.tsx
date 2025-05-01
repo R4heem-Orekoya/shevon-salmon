@@ -11,7 +11,11 @@ import { VideoInfo } from "@/types"
 
 async function fetchVideo(id: string) {
    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${id}&key=${process.env.YT_API_KEY}`;
-   const res = await fetch(url);
+   const res = await fetch(url, {
+      next: {
+         tags: ["yt-video"]
+      }
+   });
 
    if (!res.ok) throw Error("Failed to fetch")
 

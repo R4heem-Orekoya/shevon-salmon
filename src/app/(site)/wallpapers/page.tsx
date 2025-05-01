@@ -10,7 +10,8 @@ import { Suspense } from "react"
 
 export default async function Page() {
    const res = await sanityFetch({
-      query: WALLPAPERS_PAGE_QUERY
+      query: WALLPAPERS_PAGE_QUERY,
+      tags: ["wallpapersPage"]
    })
    
    const data: WALLPAPERS_PAGE_QUERYResult[number] = res.data[0]

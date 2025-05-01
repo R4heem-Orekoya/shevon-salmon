@@ -11,6 +11,11 @@ export const projectId = assertValue(
   'Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID'
 )
 
+export const webhookSecret = assertValue(
+  process.env.SANITY_HOOK_SECRET,
+  'Missing environment variable: SANITY_HOOK_SECRET'
+)
+
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
     throw new Error(errorMessage)

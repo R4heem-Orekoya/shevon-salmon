@@ -1,7 +1,6 @@
 import { defineQuery } from "next-sanity";
 
-export const GEARS_PAGE_QUERY =
-  defineQuery(`*[_type == "gearsPage"] {
+export const GEARS_PAGE_QUERY = defineQuery(`*[_type == "gearsPage"] {
     heading, subHeading, gears, youtubeReferenceVideo
 }`)
 

@@ -6,7 +6,8 @@ import { GALLERY_PAGE_QUERY } from "@/sanity/utils/queries"
 
 export default async function Page() {
    const res = await sanityFetch({
-      query: GALLERY_PAGE_QUERY
+      query: GALLERY_PAGE_QUERY,
+      tags: ["galleryPage"]
    })
    
    const data: GALLERY_PAGE_QUERYResult[number] = res.data[0]

@@ -11,7 +11,8 @@ import { HOME_PAGE_QUERY } from "@/sanity/utils/queries"
 
 export default async function Page(){
   const res = await sanityFetch({
-    query: HOME_PAGE_QUERY
+    query: HOME_PAGE_QUERY,
+    tags: ["homePage"]
   })
   
   const data: HOME_PAGE_QUERYResult[number] = res.data[0]
