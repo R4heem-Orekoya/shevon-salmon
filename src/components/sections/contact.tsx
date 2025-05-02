@@ -93,7 +93,7 @@ export default function Contact() {
                   <Link href={process.env.NEXT_PUBLIC_TWITCH_LINK!} target="_blank" className="py-6 flex justify-between border-b group">
                      <div className="flex items-center gap-2 font-medium font-sora">
                         <TwitchIcon className="w-5 h-5"/>
-                        Twitter
+                        Twitch
                      </div>
                      
                      <ArrowRight className="w-6 h-6 shrink-0 -rotate-45 group-hover:rotate-0 transition-all duration-500" strokeWidth={1.5}/>
